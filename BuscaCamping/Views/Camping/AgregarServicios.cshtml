@@ -1,0 +1,63 @@
+﻿@using BuscaCamping.DataAccess.Modelo
+
+@model BuscaCamping.DataAccess.ViewModels.ServicioViewModel
+
+@{
+    ViewBag.Title = "AgregarServicios";
+}
+
+<h2>AgregarServicios</h2>
+
+
+@using (Html.BeginForm("savedata","Camping")) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ServicioCamping</h4>
+        <hr />
+
+        <div class="form-group">
+            @foreach (ServicioCamping sc in Model.ListaServicio)
+            {
+                @*<input type="checkbox" id="chk_srv_@sc.IdServicio" value="@sc.IdServicio">
+                <label for="chk_srv_@sc.IdServicio">@sc.Descripcion</label>
+                <input type="text" id="txt_srv_@sc.IdServicio" value="" placeholder="Precio"><br />*@
+               
+                <div class="form-group">
+                    @sc.Descripcion
+
+                    
+                    
+                        @Html.CheckBoxFor(model => sc.IsChecked, new { @value = sc.IdServicio, @id = "chk_srv_" + sc.IdServicio, @checked = "checked" })
+                   
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => sc.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => sc.Precio, new { htmlAttributes = new { @class = "form-control", @id = "txt_" + sc.IdServicio} })
+                    </div>
+                </div>
+
+            }
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

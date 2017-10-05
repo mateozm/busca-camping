@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.Cliente>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Agregar un cliente", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CodCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nacionalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdTipoSexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdLocalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProvincia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCalle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelFijo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th colspan="3">Acciones</th>
+
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @item.FechaNac.ToShortDateString()
+            </td>
+            <td>
+                @item.ObtenerNacionalidad()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionSexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreLocalidad)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProvincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelFijo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>
+
+
+
+            <td> @Html.ActionLink("Modificar", "Edit", new { idCliente = item.CodCliente }) </td>
+            <td>@Html.ActionLink("Consultar", "Details", new { id = item.CodCliente })</td>
+            <td>@Html.ActionLink("Eliminar", "Delete", new { id = item.CodCliente }, new { onclick = "return confirm('Esta seguro de eliminar Cliente?');" })</td>
+
+        </tr>
+    }
+
+</table>

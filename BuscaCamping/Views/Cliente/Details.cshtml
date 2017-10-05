@@ -1,0 +1,139 @@
+﻿@model BuscaCamping.DataAccess.Modelo.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaNac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nacionalidad)
+        </dt>
+
+        <dd>
+            @Model.ObtenerNacionalidad()
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdTipoSexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescripcionSexo)
+        </dd>
+              
+        <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroCalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroCalle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelFijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelFijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreLocalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreLocalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreDepartamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDepartamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProvincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProvincia)
+        </dd>
+                   
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "Edit", new { idCliente = Model.CodCliente})
+    @Html.ActionLink("Volver", "Index")
+</p>

@@ -1,0 +1,94 @@
+﻿@model BuscaCamping.DataAccess.Modelo.Camping
+
+@{
+    ViewBag.Title = "DetailsCamping";
+}
+
+<h2>DetailsCamping</h2>
+
+<div>
+    <h4>Camping</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCamping)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCamping)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreCamping)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreCamping)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CantParcelas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantParcelas)
+        </dd>
+             <dt>
+            @Html.DisplayNameFor(model => model.Calle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelFijo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelFijo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Celular)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Celular)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreLocalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreLocalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreDepartamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreDepartamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProvincia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProvincia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modificar", "EditCamping", new { idCamping = Model.IdCamping })
+    @Html.ActionLink("Volver", "IndexCamping")
+</p>

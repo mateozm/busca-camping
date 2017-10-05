@@ -1,0 +1,92 @@
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.Camping>
+
+@{
+    ViewBag.Title = "IndexCamping";
+}
+
+<h2>IndexCamping</h2>
+
+<p>
+    @Html.ActionLink("Agregar Camping", "CreateCamping")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCamping)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCamping)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantParcelas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroCalle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdLocalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelFijo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.NombreProvincia)
+        </th>        
+       
+        <th colspan="3">Acciones</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCamping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCamping)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CantParcelas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calle)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroCalle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreLocalidad)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TelFijo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>       
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreProvincia)
+            </td>
+
+            <td> @Html.ActionLink("Modificar", "EditCamping", new { idCamping = item.IdCamping }) </td>
+            <td>@Html.ActionLink("Consultar", "DetailsCamping", new { id = item.IdCamping })</td>
+            <td>@Html.ActionLink("Eliminar", "Delete", new { id = item.IdCamping }, new { onclick = "return confirm('Esta seguro de eliminar Cliente?');" })</td>
+        </tr>
+    }
+
+</table>

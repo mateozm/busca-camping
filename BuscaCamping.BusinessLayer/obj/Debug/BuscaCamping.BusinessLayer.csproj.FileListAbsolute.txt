@@ -1,0 +1,7 @@
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\obj\Debug\BuscaCamping.BusinessLayer.csprojResolveAssemblyReference.cache
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\bin\Debug\BuscaCamping.BusinessLayer.dll
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\bin\Debug\BuscaCamping.BusinessLayer.pdb
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\bin\Debug\BuscaCamping.DataAccess.dll
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\bin\Debug\BuscaCamping.DataAccess.pdb
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\obj\Debug\BuscaCamping.BusinessLayer.dll
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\BuscaCamping\BuscaCamping.BusinessLayer\obj\Debug\BuscaCamping.BusinessLayer.pdb

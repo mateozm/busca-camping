@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/jquery-1.12.4.min.js")
+
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Busca Camping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Listado Clientes", "Index", "Cliente")</li>
+                    <li>@Html.ActionLink("Listado Camping", "IndexCamping", "Camping")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Busca Camping</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-1.12.4.min.js")
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
+          
+       
+    <script type="text/javascript">
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '1910:+nn ',changeMonth: true, changeYear: true, minDate: new Date(1910, 1, 1), maxDate: new Date() });
+        })
+
+        $(document).ready(function () {  
+            //Dropdownlist Selectedchange event 
+            
+            $("#cliente_IdProvincia").change(function () {
+                $("#cliente_IdDepartamento").empty();
+                $("#cliente_IdLocalidad").empty();
+                $("#cliente_IdDepartamento").append('<option value="">Por favor seleccione una opción</option>');
+                $("#cliente_IdLocalidad").append('<option value="">Por favor seleccione una opción</option>');
+                $.ajax({  
+                    type: 'POST',  
+                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method  
+   
+                    dataType: 'json',  
+   
+                    data: { id: $("#cliente_IdProvincia").val() },   
+                    // here we are get value of selected country and passing same value  
+                    //as inputto json method GetStates.  
+   
+                    success: function (states) {  
+                        // states contains the JSON formatted list  
+                        // of states passed from the controller  
+   
+                        $.each(states, function (i, state) {  
+                            $("#cliente_IdDepartamento").append('<option value="' + state.Value + '">' +
+                                 state.Text + '</option>');                                                                                                  
+                            // here we are adding option for States  
+   
+                        });  
+                    },  
+                error: function (ex) {  
+                    //alert('Error al cargar departamentos.' + ex);  
+                }  
+            });  
+            return false;  
+        })  
+        });
+
+        $(document).ready(function () {
+            //Dropdownlist Selectedchange event  
+            $("#cliente_IdDepartamento").change(function () {
+                $("#cliente_IdLocalidad").empty();
+                $("#cliente_IdLocalidad").append('<option value="">Por favor Seleccione una opción</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListarLocalidades")',
+                    dataType: 'json',
+                    data: { id: $("#cliente_IdDepartamento").val() },
+                    success: function (citys) {
+                        // states contains the JSON formatted list  
+                        // of states passed from the controller  
+                        $.each(citys, function (i, city) {
+                            $("#cliente_IdLocalidad").append('<option value="'
+    + city.Value + '">'
+    + city.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        //alert('Error al cargar ciudades.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+
+        //Funciones para listar localidades, etc para camping
+
+        $(document).ready(function () {
+            //Dropdownlist Selectedchange event 
+
+            $("#camping_IdProvincia").change(function () {
+                $("#camping_IdDepartamento").empty();
+                $("#camping_IdLocalidad").empty();
+                $("#camping_IdDepartamento").append('<option value="">Por favor seleccione una opción</option>');
+                $("#camping_IdLocalidad").append('<option value="">Por favor seleccione una opción</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method  
+
+                    dataType: 'json',
+
+                    data: { id: $("#camping_IdProvincia").val() },
+                    // here we are get value of selected country and passing same value  
+                    //as inputto json method GetStates.  
+
+                    success: function (states) {
+                        // states contains the JSON formatted list  
+                        // of states passed from the controller  
+
+                        $.each(states, function (i, state) {
+                            $("#camping_IdDepartamento").append('<option value="' + state.Value + '">' +
+                                 state.Text + '</option>');
+                            // here we are adding option for States  
+
+                        });
+                    },
+                    error: function (ex) {
+                        //alert('Error al cargar departamentos.' + ex);  
+                    }
+                });
+                return false;
+            })
+        });
+
+        $(document).ready(function () {
+            //Dropdownlist Selectedchange event  
+            $("#camping_IdDepartamento").change(function () {
+                $("#camping_IdLocalidad").empty();
+                $("#camping_IdLocalidad").append('<option value="">Por favor Seleccione una opción</option>');
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListarLocalidades")',
+                    dataType: 'json',
+                    data: { id: $("#camping_IdDepartamento").val() },
+                    success: function (citys) {
+                        // states contains the JSON formatted list  
+                        // of states passed from the controller  
+                        $.each(citys, function (i, city) {
+                            $("#camping_IdLocalidad").append('<option value="'
+    + city.Value + '">'
+    + city.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        //alert('Error al cargar ciudades.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

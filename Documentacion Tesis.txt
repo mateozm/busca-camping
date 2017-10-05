@@ -1,0 +1,41 @@
+1) Arquitectura de alto nivel:
+   El sistema estara divido en 3 capas:
+	Interfaz de usuario
+	Logica de Negocio
+	Acceso a datos (+ base de datos)
+	
+	Interfaz de usuario: Permitira el ingreso de datos de los diferentes ABMs del sistema, tales como campings, clientes, reservas, etc
+	Logica de negocio: Esta capa tendra la responsabilidad de realizar las diferentes validaciones de los modelos. Se usara las tecnicas de validacion
+		provistas por ASP.NET MVC y de ser necesario se agregara la logica correspondiente para cada modelo o servicio.
+	Acceso a Datos: Se utilizara ADO.NET (DataReaders, Commands, etc)
+	Base de Datos: SQL Server
+		
+   	   
+
+   Tecnologias: 
+	HTML, Javacript, CSS: Interfaz de la aplicacion
+	ASP.NET MVC: Para manejo de acciones de la interfaz de usuario.
+	SQL Server: Almacenamiento de datos de clientes, campings y reservas
+	C#: Lenguaje principal
+
+2) Modulo Cliente
+
+3) Modulo Camping
+
+4) Modulo Reservas (este módulo va a ser el encargado de calcular la comisión que se le cobrará a cada camping por reserva realiza a través del sitio)
+
+5) Modulo Opiniones
+
+6) Reportes
+
+7) Modulo Administrador
+
+Mejoras: 
+	Interfaz de usuario (mejorar la presentación)
+	Entity Frameworks (remplazando ado.net)
+	Autenticación de usuarios usando cuenta de Gmail.
+
+ABM Cliente
+Estructura básica del proyecto
+Documentacion Inicial
+	

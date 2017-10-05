@@ -1,0 +1,29 @@
+create proc procedimiento8(@email nvarchar(50),@telfijo int,@celular int,@dni int,@nombre nvarchar(50),@apellido nvarchar(50),@fechaNac datetime,@nacionalidad bit,@idTipoSexo int,@idLocalidad int,@calle nvarchar(50),@numeroCalle int)
+as
+BEGIN TRANSACTION DECLARE @DatosID int; 
+   INSERT INTO DatosContacto(email,telFijjo,celular) VALUES (@email,@telfijo,@celular);
+   SELECT @DatosID = scope_identity();
+   INSERT INTO cliente(dni,nombre,apellido,fechaNac,nacionalidad,idTipoSexo,idlocalidad,calle,numeroCalle,idDatosContacto) VALUES (@dni,@nombre,@apellido,@fechaNac,@nacionalidad,@idTipoSexo,@idLocalidad,@calle,@numeroCalle, @DatosID);
+COMMIT
+
+
+
+
+create proc procedimientoUpdate3(@idLocalidad int,@calle nvarchar(50),@numeroCalle int,@codCliente int,@email nvarchar(50),@telfijo int,@celular int)
+as
+declare @idDatos table (id int)
+BEGIN TRANSACTION 
+   update cliente set idLocalidad=@idLocalidad,calle=@calle,numeroCalle=@numeroCalle
+   output inserted.idDatosContacto into @idDatos
+    where codCliente=@codCliente   
+   update DatosContacto set email=@email,telFijjo=@telfijo,celular=@celular
+   from DatosContacto join @idDatos i on i.id=DatosContacto.idDatosContacto 
+COMMIT
+
+create proc insertCamping9(@email nvarchar(50),@telfijo int,@celular int,@nombreCamping nvarchar(50),@cantParcelas int,@calle varchar(50),@numeroCalle int,@idLocalidad int)
+as
+BEGIN TRANSACTION DECLARE @DatosID int; 
+   INSERT INTO DatosCamping(email,telFijo,celular) VALUES (@email,@telfijo,@celular);
+   SELECT @DatosID = scope_identity();
+   INSERT INTO Camping(nombreCamping,cantParcelas,calle,numeroCalle,idLocalidad,idDatosCamping) VALUES (@nombreCamping,@cantParcelas,@calle,@numeroCalle,@idLocalidad, @DatosID);
+COMMIT

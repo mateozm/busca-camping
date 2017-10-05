@@ -1,4 +1,6 @@
-﻿@model BuscaCamping.DataAccess.ViewModels.CampingViewModel
+﻿
+
+@model BuscaCamping.DataAccess.ViewModels.CampingViewModel
 
 @{
     ViewBag.Title = "CreateCamping";
@@ -107,14 +109,42 @@
 
             </div>
 
-        </div>       
+        </div>               
+    
+    
+        <div class="servicios">
+            <div class="form-group">
+                @Html.LabelFor(model => model.camping.IdServicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.camping.IdServicio,
+                new SelectList(Model.Listaservicios, "idServicio", "descripcion"))
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.camping.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.camping.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.camping.Precio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Agregar Servicio" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+
     </div>
+
+
+
 
     
 }

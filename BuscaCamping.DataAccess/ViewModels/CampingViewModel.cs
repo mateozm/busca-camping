@@ -9,7 +9,8 @@ namespace BuscaCamping.DataAccess.ViewModels
 {
     public class CampingViewModel
     {
-        public Camping camping { get; set; }            
+        public Camping camping { get; set; }
+        public List<ServicioCamping> Listaservicios { get; set; }            
         public List<Localidad> localidades { get; set; }
         public List<Departamento> departamentos { get; set; }
         public List<Provincia> provincias { get; set; }

@@ -8,11 +8,11 @@ namespace BuscaCamping.DataAccess.Modelo
 {
     public class ServicioCamping
     {
-        public ServicioCamping(int idServicio, string descripcion, int precio)
+        public ServicioCamping(int idServicio, string descripcion)
         {
             IdServicio = idServicio;
             Descripcion = descripcion;
-            Precio = precio;
+            
             
         }
 
@@ -23,7 +23,6 @@ namespace BuscaCamping.DataAccess.Modelo
 
         public int IdServicio { get; set; }
         public string Descripcion { get; set; }
-        public int Precio { get; set; }
-        public bool IsChecked { get; set; }
+        
     }
 }

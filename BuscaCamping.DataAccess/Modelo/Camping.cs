@@ -33,7 +33,11 @@ namespace BuscaCamping.DataAccess.Modelo
             NombreLocalidad = nombreLocalidad;
             NombreDepartamento = nombreDepartamento;
             NombreProvincia = nombreProvincia;
-            Servicios = new List<ServicioCamping>();
+            ListaServicios = new List<ServicioPorCamping>();
+            IdServicio = 0;
+            DescripcionServicio = "";
+            Precio = 0;
+          
             
         }
 
@@ -72,6 +76,10 @@ namespace BuscaCamping.DataAccess.Modelo
         public string NombreDepartamento { get; set; }
         [Display(Name = "Provincia")]
         public string NombreProvincia { get; set; }
-        public List<ServicioCamping> Servicios { get; set; }
+        public List<ServicioPorCamping> ListaServicios { get; set; }
+        public int IdServicio { get; set; }
+        public string DescripcionServicio { get; set; }
+        public float Precio { get; set; }
+       
     }
 }

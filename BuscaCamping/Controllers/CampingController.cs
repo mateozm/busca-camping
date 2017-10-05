@@ -50,7 +50,7 @@ namespace BuscaCamping.Controllers
         public ActionResult CreateCamping()
         {
             ViewData["prov"] = gz.ObtenerProvincias().ConvertAll(x => new SelectListItem { Text = x.NombreProvincia, Value = x.IdProvincia.ToString() });
-          
+            cvm.Listaservicios = gs.ObtenerTodosServicios();
 
             return View(cvm);
         }
@@ -87,30 +87,8 @@ namespace BuscaCamping.Controllers
             return RedirectToAction("IndexCamping");
         }
 
-        public ActionResult AgregarServicios()
-        {
-            
-            svm.ListaServicio = gs.ObtenerTodosServicios();
-
-            return View(svm);
-        }
-
-
-        [HttpPost]
-        public ActionResult AgregarServicios(ServicioViewModel svm)
-        {
-            gs.AgregarServicioPorCamp(svm);
-            return RedirectToAction("IndexCamping");
-        }
-
-        public void savedata(FormCollection fomr)
-        {
-            
-            string surname = Request.Form["surname"];
-            string age = Request.Form["age"];
-            string gender = Request.Form["gender"];
-        }
-
+     
+   
 
     }
 }

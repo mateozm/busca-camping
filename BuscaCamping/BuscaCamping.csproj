@@ -320,7 +320,6 @@
     <Content Include="Views\Camping\DetailsCamping.cshtml" />
     <Content Include="Views\Camping\CreateCamping.cshtml" />
     <Content Include="Views\Camping\EditCamping.cshtml" />
-    <Content Include="Views\Camping\AgregarServicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\App_Data\" />

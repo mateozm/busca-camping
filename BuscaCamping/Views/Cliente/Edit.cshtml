@@ -120,7 +120,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdProvincia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdProvincia, ViewData["prov"] as List<SelectListItem>, "Por favor seleccione una opción")
+                @Html.DropDownListFor(model => model.cliente.IdProvincia, ViewData["prov"] as List<SelectListItem>, "Por favor seleccione una opción", new { @class = "form-control", @value="" })
                 @Html.ValidationMessageFor(model => model.cliente.IdProvincia, "", new { @class = "text-danger" })
 
             </div>
@@ -129,7 +129,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdDepartamento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.cliente.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cliente.IdDepartamento, "", new { @class = "text-danger" })
 
             </div>
@@ -138,7 +138,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdLocalidad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.cliente.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción",  new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cliente.IdLocalidad, "", new { @class = "text-danger" })
 
 

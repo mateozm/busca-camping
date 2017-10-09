@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BuscaCamping.DataAccess.DataReaders;
 using BuscaCamping.DataAccess.Modelo;
 using BuscaCamping.DataAccess.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace BuscaCamping.Controllers
@@ -87,8 +88,7 @@ namespace BuscaCamping.Controllers
             return RedirectToAction("IndexCamping");
         }
 
-     
-   
+       
 
     }
-}
+    } 

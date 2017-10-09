@@ -6,19 +6,19 @@
     ViewBag.Title = "CreateCamping";
 }
 
-<h2>CreateCamping</h2>
+<h2>Agregar Camping</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Camping</h4>
+    <div class="form-horizontal" >
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
+        <div class="form-group ">
             @Html.LabelFor(model => model.camping.NombreCamping, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.camping.NombreCamping, new { htmlAttributes = new { @class = "form-control" } })
@@ -85,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.camping.IdProvincia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.camping.IdProvincia, ViewData["prov"] as List<SelectListItem>, "Por favor seleccione una opción")
+                @Html.DropDownListFor(model => model.camping.IdProvincia, ViewData["prov"] as List<SelectListItem>, "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.camping.IdProvincia, "", new { @class = "text-danger" })
 
             </div>
@@ -94,7 +94,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.camping.IdDepartamento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.camping.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.camping.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.camping.IdDepartamento, "", new { @class = "text-danger" })
 
             </div>
@@ -103,7 +103,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.camping.IdLocalidad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.camping.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.camping.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.camping.IdLocalidad, "", new { @class = "text-danger" })
 
 
@@ -117,42 +117,61 @@
                 @Html.LabelFor(model => model.camping.IdServicio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.camping.IdServicio,
-                new SelectList(Model.Listaservicios, "idServicio", "descripcion"))
+                new SelectList(Model.Listaservicios, "idServicio", "descripcion"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.camping.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.camping.Precio, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.camping.Precio, "", new { @class = "text-danger" })
+                    
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="button" value="Agregar Servicio" class="btn btn-default" />
+                    <input type="button" value="Agregar Servicio" class="btn btn-warning" id="btnServicio" onclick="cargarServicios()"/>
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Agregar Camping" class="btn btn-success"  />
+            </div>
+        </div>
+
+        
+
+    </div>
+
+    <div class="form-horizontal" >
+
+        <div id="container">
+            <div id="dataTable">
+                <h2>Servicios</h2>
+                <table id="myDataTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lstRegistro"></tbody>
+                </table>
             </div>
         </div>
 
     </div>
 
 
+        }
 
+        <div>
+            @Html.ActionLink("Back to List", "IndexCamping")
+        </div>
 
-    
-}
-
-<div>
-    @Html.ActionLink("Back to List", "IndexCamping")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

@@ -4,12 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/jquery-ui.min.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/Scripts/jquery-1.12.4.min.js")
+    @Styles.Render("~/Scripts/bootstrap.min.js")
+   
 
-    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
+
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.min.js")    
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.scroller.min.js")
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/DataTables/css/dataTables.bootstrap.css")
+    @Styles.Render("~/Content/site.css")
+   
+
+
+
+
+
+
+ 
+
+  
+
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -40,17 +66,72 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/Scripts/jquery-1.12.4.min.js")
-    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
+   
           
        
     <script type="text/javascript">
         $(function () {
             // This will make every element with the class "date-picker" into a DatePicker element
-            $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '1910:+nn ',changeMonth: true, changeYear: true, minDate: new Date(1910, 1, 1), maxDate: new Date() });
+            $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '1910:+nn ', changeMonth: true, changeYear: true, minDate: new Date(1910, 1, 1), maxDate: new Date() });
+
+            
         })
+
+        function ServicioPorCamping(idText, descripcion,precio) {
+          
+            this.idText = idText;
+            this.descripcion = descripcion;
+            this.precio = precio;
+        }
+
+        var servicios = new Array();
+
+        function cargarServicios() {
+           
+            var idText = document.getElementById("camping_IdServicio").value;            
+            var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
+            var precio = document.getElementById("camping_Precio").value;
+
+            if (!Number.isInteger(+precio)) {
+                alert('Valor no valido');
+                return;
+            } else if (idText == "") {
+                alert('Debe elegir un servicio');
+                return;
+            }
+
+            var serv = new ServicioPorCamping(idText, descripcion, precio);
+
+            for (var i = 0; i < servicios.length; i++) {
+                if (servicios[i].idText==serv.idText) {
+                    alert('El servicio ya fue agregado en la lista');
+                    return;
+                }
+            }
+            
+
+            servicios.push(serv);
+            agregarServicio(serv);
+
+
+           
+        }
+
+       
+        function agregarServicio(servicio) {
+
+            var tabla = document.getElementById("lstRegistro");
+            var htmlTabla;
+
+            for (var i = 0; i < servicios.length; i++) {
+                var htmlTabla = "<tr><td>" + servicios[i].idText + "</td><td>" + servicios[i].descripcion + "</td><td>" + servicios[i].precio + "</td></tr>";
+            }
+
+            tabla.innerHTML += htmlTabla;
+
+        }
+
+     
 
         $(document).ready(function () {  
             //Dropdownlist Selectedchange event 
@@ -181,6 +262,9 @@
                 return false;
             })
         });
+           
+       
+
 
     </script>
 

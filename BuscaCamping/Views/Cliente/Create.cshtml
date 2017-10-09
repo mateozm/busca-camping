@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Cliente</h4>
+     
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.FechaNac, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.cliente.FechaNac, "", new { @class = "date-picker" })
+                @Html.TextBoxFor(model => model.cliente.FechaNac, "", new { @class = "date-picker", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.cliente.FechaNac, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +67,7 @@
             @Html.LabelFor(model => model.cliente.IdTipoSexo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.cliente.IdTipoSexo,
-                new SelectList(Model.sexos, "idTipoSexo", "descripcion"))            
+                new SelectList(Model.sexos, "idTipoSexo", "descripcion"), new { @class = "form-control" })            
             </div>
         </div>        
 
@@ -114,7 +114,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdProvincia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdProvincia, ViewData["prov"] as List<SelectListItem>,"Por favor seleccione una opción")
+                @Html.DropDownListFor(model => model.cliente.IdProvincia, ViewData["prov"] as List<SelectListItem>,"Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" , @value = "" })
                 @Html.ValidationMessageFor(model => model.cliente.IdProvincia, "", new { @class = "text-danger" })
                 
             </div>
@@ -123,7 +123,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdDepartamento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.cliente.IdDepartamento, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cliente.IdDepartamento, "", new { @class = "text-danger" })
                
             </div>
@@ -132,7 +132,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.cliente.IdLocalidad, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.cliente.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "dropdown1" })
+                @Html.DropDownListFor(model => model.cliente.IdLocalidad, new SelectList(string.Empty, "Value", "Text"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cliente.IdLocalidad, "", new { @class = "text-danger" })
                 
                
@@ -141,7 +141,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Agregar" class="btn btn-default" />
+                <input type="submit" value="Agregar" class="btn btn-success" />
             </div>
         </div>
     </div>

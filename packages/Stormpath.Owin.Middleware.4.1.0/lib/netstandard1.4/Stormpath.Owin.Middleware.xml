@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stormpath.Owin.Middleware</name>
+    </assembly>
+    <members>
+        <member name="M:Stormpath.Owin.Middleware.DefaultSmartComparer.CompareStringsOrdinal(System.Object,System.Object)">
+            <summary>
+            By default, always compare strings with an Ordinal comparison.
+            </summary>
+            <param name="x">The first string.</param>
+            <param name="y">The second string.</param>
+            <returns><c>true</c> if the strings are equal.</returns>
+        </member>
+        <member name="M:Stormpath.Owin.Middleware.DefaultSmartComparer.IntegersEquals(System.Object,System.Object)">
+            <summary>
+            Compares two integer-like types, regardless of the size of the underlying type.
+            </summary>
+            <remarks>
+            This is necessary because the Stormpath SDK deserializes integers as <c>long</c> under the hood.
+            </remarks>
+            <param name="obj1">An integer-like type.</param>
+            <param name="obj2">An integer-like type.</param>
+            <returns><c>true</c> if the values are identical.</returns>
+        </member>
+        <member name="M:Stormpath.Owin.Middleware.Internal.Serializer.Sanitize(Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Converts a nested tree of <see cref="T:Newtonsoft.Json.Linq.JObject"/> instances into nested <see cref="T:System.Collections.Generic.IDictionary`2">dictionaries</see>.
+            </summary>
+            <remarks>JSON.NET deserializes everything into nested JObjects. We want IDictionaries all the way down.</remarks>
+            <param name="map">Deserialized <see cref="T:Newtonsoft.Json.Linq.JObject"/> from JSON.NET</param>
+            <returns><see cref="T:System.Collections.Generic.IDictionary`2"/> of primitive items, and embedded objects as nested <see cref="T:System.Collections.Generic.IDictionary`2"/></returns>
+        </member>
+        <member name="T:Stormpath.Owin.Middleware.OrphanAccessTokenValidator">
+            <summary>
+            Validates tokens issued locally by this middleware code.
+            This flow is used by the Client Credentials grant type.
+            </summary>
+        </member>
+        <member name="T:Stormpath.Owin.Middleware.RouteProtector">
+            <summary>
+            Represents the logic that protects routes and responds to unauthorized access.
+            </summary>
+        </member>
+        <member name="M:Stormpath.Owin.Middleware.RouteProtector.#ctor(Stormpath.Owin.Abstractions.Configuration.IntegrationConfiguration,System.Action{Stormpath.Configuration.Abstractions.Immutable.WebCookieConfiguration},System.Action{System.Int32},System.Action{System.String,System.String},System.Action{System.String},Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Creates a new instance of the <see cref="T:Stormpath.Owin.Middleware.RouteProtector"/> class.
+            </summary>
+            <param name="stormpathConfiguration">The active Stormpath <see cref="T:Stormpath.Configuration.Abstractions.Immutable.StormpathConfiguration">configuration</see>.</param>
+            <param name="deleteCookieAction">Delegate to delete cookies in the response.</param>
+            <param name="setStatusCodeAction">Delegate to set the response status code.</param>
+            <param name="setHeaderAction">Delegate to set a header in the response.</param>
+            <param name="redirectAction">Delegate to set the response Location header.</param>
+            <param name="logger">The <see cref="T:Microsoft.Extensions.Logging.ILogger"/> to use.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Middleware.RouteProtector.IsAuthenticated(System.String,System.String,Stormpath.Owin.Abstractions.ICompatibleOktaAccount)">
+            <summary>
+            Checks whether a properly-authenticated user is making this request.
+            </summary>
+            <remarks><paramref name="authenticationScheme"/> and <paramref name="account"/> are available in the OWIN environment as <see cref="F:Stormpath.Owin.Abstractions.OwinKeys.StormpathUser"/> and <see cref="F:Stormpath.Owin.Abstractions.OwinKeys.StormpathUserScheme"/>, respectively.</remarks>
+            <param name="authenticationScheme">The authentication scheme used for the request.</param>
+            <param name="requiredAuthenticationScheme">The authentication scheme that must be used for this route, or <see cref="F:Stormpath.Owin.Middleware.RouteProtector.AnyScheme"/>.</param>
+            <param name="account">The Stormpath Account, if any.</param>
+            <returns><see langword="true"/> if the request is authenticated; <see langword="false"/> otherwise.</returns>
+        </member>
+        <member name="M:Stormpath.Owin.Middleware.RouteProtector.OnUnauthorized(System.String,System.String)">
+            <summary>
+            Redirects or responds to an unauthorized request.
+            </summary>
+            <remarks>Uses the Actions passed to the <see cref="T:Stormpath.Owin.Middleware.RouteProtector"/> to execute this logic in a framework-agnostic way.</remarks>
+            <param name="acceptHeader">The HTTP <c>Accept</c> header of this request.</param>
+            <param name="requestPath">The OWIN request path of this request.</param>
+        </member>
+    </members>
+</doc>

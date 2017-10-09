@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stormpath.Owin.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="P:Stormpath.Owin.Abstractions.DefaultOwinRequest.OriginalUri">
+            <summary>
+            Reconstructs the original request URI, minus the scheme and host.
+            </summary>
+        </member>
+        <member name="T:Stormpath.Owin.Abstractions.OwinKeys">
+            <summary>
+            OWIN keys, as defined in <see href="http://owin.org/html/spec/owin-1.0.html"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -10,6 +10,7 @@ using BuscaCamping.DataAccess.ViewModels;
 
 namespace BuscaCamping.Controllers
 {
+    
     public class ClienteController : Controller
     {
         GestorCliente gc = new GestorCliente();

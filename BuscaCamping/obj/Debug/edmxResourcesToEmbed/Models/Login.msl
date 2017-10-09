@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BuscaCampingModelStoreContainer" CdmEntityContainer="BuscaCampingEntities">
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="BuscaCampingModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="passwordSalt" ColumnName="passwordSalt" />
+          <ScalarProperty Name="usserTipe" ColumnName="usserTipe" />
+          <ScalarProperty Name="createData" ColumnName="createData" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="ipAdress" ColumnName="ipAdress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

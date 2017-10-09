@@ -10,6 +10,7 @@ namespace BuscaCamping.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 

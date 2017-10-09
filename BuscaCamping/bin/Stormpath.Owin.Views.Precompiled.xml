@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Stormpath.Owin.Views.Precompiled</name>
+    </assembly>
+    <members>
+        <member name="P:Stormpath.Owin.Views.Precompiled.BaseView`1.Output">
+            <summary>
+            The output stream
+            </summary>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.ExecuteAsync(`0,System.IO.Stream)">
+            <summary>
+            Render the view.
+            </summary>
+            <param name="model">The model to use.</param>
+            <param name="target">The target stream to write to.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.ExecuteAsync">
+            <summary>
+            Execute an individual request
+            </summary>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteLiteral(System.String)">
+            <summary>
+            Write the given value directly to the output
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteLiteral(System.Object)">
+            <summary>
+            Write the given value directly to the output
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteAttributeTo(System.IO.TextWriter,System.String,System.String,System.String,Stormpath.Owin.Views.Precompiled.AttributeValue[])">
+            <summary>
+            Writes the given attribute to the given writer
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+            <param name="name">The name of the attribute to write</param>
+            <param name="leader">The value of the prefix</param>
+            <param name="trailer">The value of the suffix</param>
+            <param name="values">The <see cref="T:Stormpath.Owin.Views.Precompiled.AttributeValue"/>s to write.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.Write(System.Object)">
+            <summary>
+            Convert to string and html encode
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.Write(System.String)">
+            <summary>
+            Html encode and write
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.Write(Stormpath.Owin.Views.Precompiled.DeferredWrite)">
+            <summary>
+            <see cref="M:Stormpath.Owin.Views.Precompiled.DeferredWrite.WriteTo(System.IO.TextWriter)"/> is invoked
+            </summary>
+            <param name="result">The <see cref="T:Stormpath.Owin.Views.Precompiled.DeferredWrite"/> to invoke</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteTo(System.IO.TextWriter,System.Object)">
+            <summary>
+            Writes the specified <paramref name="value"/> to <paramref name="writer"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+            <param name="value">The <see cref="T:System.Object"/> to write.</param>
+            <remarks>
+            <see cref="M:Stormpath.Owin.Views.Precompiled.DeferredWrite.WriteTo(System.IO.TextWriter)"/> is invoked for <see cref="T:Stormpath.Owin.Views.Precompiled.DeferredWrite"/> types.
+            For all other types, the encoded result of <see cref="M:System.Object.ToString"/> is written to the
+            <paramref name="writer"/>.
+            </remarks>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteTo(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes the specified <paramref name="value"/> with HTML encoding to <paramref name="writer"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+            <param name="value">The <see cref="T:System.String"/> to write.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteLiteralTo(System.IO.TextWriter,System.Object)">
+            <summary>
+            Writes the specified <paramref name="value"/> without HTML encoding to the <paramref name="writer"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+            <param name="value">The <see cref="T:System.Object"/> to write.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.BaseView`1.WriteLiteralTo(System.IO.TextWriter,System.String)">
+            <summary>
+            Writes the specified <paramref name="value"/> without HTML encoding to <see cref="P:Stormpath.Owin.Views.Precompiled.BaseView`1.Output"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+            <param name="value">The <see cref="T:System.String"/> to write.</param>
+        </member>
+        <member name="T:Stormpath.Owin.Views.Precompiled.DeferredWrite">
+            <summary>
+            Represents a deferred write operation in a <see cref="T:Stormpath.Owin.Views.Precompiled.BaseView`1"/>.
+            </summary>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.DeferredWrite.#ctor(System.Func{System.IO.TextWriter,System.Threading.Tasks.Task})">
+            <summary>
+            Creates a new instance of <see cref="T:Stormpath.Owin.Views.Precompiled.DeferredWrite"/>.
+            </summary>
+            <param name="func">The delegate to invoke when <see cref="M:Stormpath.Owin.Views.Precompiled.DeferredWrite.WriteTo(System.IO.TextWriter)"/> is called.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.DeferredWrite.WriteTo(System.IO.TextWriter)">
+            <summary>
+            Method invoked to produce content from the <see cref="T:Stormpath.Owin.Views.Precompiled.DeferredWrite"/>.
+            </summary>
+            <param name="writer">The <see cref="T:System.IO.TextWriter"/> instance to write to.</param>
+        </member>
+        <member name="M:Stormpath.Owin.Views.Precompiled.IView.ExecuteAsync(System.Object,System.IO.Stream)">
+            <summary>
+            Render the view.
+            </summary>
+            <param name="model">The model to use.</param>
+            <param name="target">The target stream to write to.</param>
+        </member>
+    </members>
+</doc>

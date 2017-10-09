@@ -48,15 +48,15 @@ namespace BuscaCamping.DataAccess.Modelo
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Solo letras")]
         [Required]
         public string Apellido { get; set; }
-        [Display(Name = "Fecha Nacimiento")]
+        [Display(Name = "Fec. Nac.")]
         [DataType(DataType.Date)]
         public DateTime FechaNac { get; set; }
         public bool Nacionalidad { get; set; }
         [Display(Name = "Sexo")]
         public int IdTipoSexo { get; set; }
         [Display(Name = "Localidad")]
-        [Required(ErrorMessage ="Elija una localidad")]
-        public int IdLocalidad { get; set; }
+        [Required(ErrorMessage = "Elija una localidad")]
+        public int IdLocalidad  { get; set; }
         [Required]
         public string Calle { get; set; }
         [Display(Name = "Número")]

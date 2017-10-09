@@ -77,6 +77,7 @@ namespace BuscaCamping.DataAccess.Modelo
         [Display(Name = "Provincia")]
         public string NombreProvincia { get; set; }
         public List<ServicioPorCamping> ListaServicios { get; set; }
+        [Display(Name = "Servicio")]
         public int IdServicio { get; set; }
         public string DescripcionServicio { get; set; }
         public float Precio { get; set; }

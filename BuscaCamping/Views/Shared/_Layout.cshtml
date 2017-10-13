@@ -65,11 +65,11 @@
             // This will make every element with the class "date-picker" into a DatePicker element
             $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '1910:+nn ', changeMonth: true, changeYear: true, minDate: new Date(1910, 1, 1), maxDate: new Date() });
 
-            
+
         })
 
         function ServicioPorCamping(idText, descripcion,precio) {
-          
+
             this.idText = idText;
             this.descripcion = descripcion;
             this.precio = precio;
@@ -78,8 +78,8 @@
         var servicios = new Array();
 
         function cargarServicios() {
-           
-            var idText = document.getElementById("camping_IdServicio").value;            
+          
+            var idText = document.getElementById("camping_IdServicio").value;
             var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
             var precio = document.getElementById("camping_Precio").value;
 
@@ -99,16 +99,16 @@
                     return;
                 }
             }
-            
+
 
             servicios.push(serv);
             agregarServicio(serv);
 
 
-           
+
         }
 
-       
+
         function agregarServicio(servicio) {
 
             var tabla = document.getElementById("lstRegistro");
@@ -122,47 +122,47 @@
 
         }
 
-     
 
-        $(document).ready(function () {  
-            //Dropdownlist Selectedchange event 
-            
+
+        $(document).ready(function () {
+            //Dropdownlist Selectedchange event
+
             $("#cliente_IdProvincia").change(function () {
                 $("#cliente_IdDepartamento").empty();
                 $("#cliente_IdLocalidad").empty();
                 $("#cliente_IdDepartamento").append('<option value="">Por favor seleccione una opción</option>');
                 $("#cliente_IdLocalidad").append('<option value="">Por favor seleccione una opción</option>');
-                $.ajax({  
-                    type: 'POST',  
-                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method  
-   
-                    dataType: 'json',  
-   
-                    data: { id: $("#cliente_IdProvincia").val() },   
-                    // here we are get value of selected country and passing same value  
-                    //as inputto json method GetStates.  
-   
-                    success: function (states) {  
-                        // states contains the JSON formatted list  
-                        // of states passed from the controller  
-   
-                        $.each(states, function (i, state) {  
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method
+
+                    dataType: 'json',
+
+                    data: { id: $("#cliente_IdProvincia").val() },
+                    // here we are get value of selected country and passing same value
+                    //as inputto json method GetStates.
+
+                    success: function (states) {
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
+
+                        $.each(states, function (i, state) {
                             $("#cliente_IdDepartamento").append('<option value="' + state.Value + '">' +
-                                 state.Text + '</option>');                                                                                                  
-                            // here we are adding option for States  
-   
-                        });  
-                    },  
-                error: function (ex) {  
-                    //alert('Error al cargar departamentos.' + ex);  
-                }  
-            });  
-            return false;  
-        })  
+                                 state.Text + '</option>');
+                            // here we are adding option for States
+
+                        });
+                    },
+                error: function (ex) {
+                    //alert('Error al cargar departamentos.' + ex);
+                }
+            });
+            return false;
+        })
         });
 
         $(document).ready(function () {
-            //Dropdownlist Selectedchange event  
+            //Dropdownlist Selectedchange event
             $("#cliente_IdDepartamento").change(function () {
                 $("#cliente_IdLocalidad").empty();
                 $("#cliente_IdLocalidad").append('<option value="">Por favor Seleccione una opción</option>');
@@ -172,8 +172,8 @@
                     dataType: 'json',
                     data: { id: $("#cliente_IdDepartamento").val() },
                     success: function (citys) {
-                        // states contains the JSON formatted list  
-                        // of states passed from the controller  
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
                         $.each(citys, function (i, city) {
                             $("#cliente_IdLocalidad").append('<option value="'
     + city.Value + '">'
@@ -191,7 +191,7 @@
         //Funciones para listar localidades, etc para camping
 
         $(document).ready(function () {
-            //Dropdownlist Selectedchange event 
+            //Dropdownlist Selectedchange event
 
             $("#camping_IdProvincia").change(function () {
                 $("#camping_IdDepartamento").empty();
@@ -200,27 +200,27 @@
                 $("#camping_IdLocalidad").append('<option value="">Por favor seleccione una opción</option>');
                 $.ajax({
                     type: 'POST',
-                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method  
+                    url: '@Url.Action("ListarDepartamentos")', // we are calling json method
 
                     dataType: 'json',
 
                     data: { id: $("#camping_IdProvincia").val() },
-                    // here we are get value of selected country and passing same value  
-                    //as inputto json method GetStates.  
+                    // here we are get value of selected country and passing same value
+                    //as inputto json method GetStates.
 
                     success: function (states) {
-                        // states contains the JSON formatted list  
-                        // of states passed from the controller  
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
 
                         $.each(states, function (i, state) {
                             $("#camping_IdDepartamento").append('<option value="' + state.Value + '">' +
                                  state.Text + '</option>');
-                            // here we are adding option for States  
+                            // here we are adding option for States
 
                         });
                     },
                     error: function (ex) {
-                        //alert('Error al cargar departamentos.' + ex);  
+                        //alert('Error al cargar departamentos.' + ex);
                     }
                 });
                 return false;
@@ -228,7 +228,7 @@
         });
 
         $(document).ready(function () {
-            //Dropdownlist Selectedchange event  
+            //Dropdownlist Selectedchange event
             $("#camping_IdDepartamento").change(function () {
                 $("#camping_IdLocalidad").empty();
                 $("#camping_IdLocalidad").append('<option value="">Por favor Seleccione una opción</option>');
@@ -238,8 +238,8 @@
                     dataType: 'json',
                     data: { id: $("#camping_IdDepartamento").val() },
                     success: function (citys) {
-                        // states contains the JSON formatted list  
-                        // of states passed from the controller  
+                        // states contains the JSON formatted list
+                        // of states passed from the controller
                         $.each(citys, function (i, city) {
                             $("#camping_IdLocalidad").append('<option value="'
     + city.Value + '">'
@@ -253,8 +253,8 @@
                 return false;
             })
         });
-           
-       
+
+
 
 
     </script>

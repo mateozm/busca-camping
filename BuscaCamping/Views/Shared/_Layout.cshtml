@@ -75,7 +75,7 @@
             this.precio = precio;
         }
 
-        var servicios = new Array();
+        var servicios = [];
 
         function cargarServicios() {
           
@@ -121,6 +121,17 @@
             tabla.innerHTML += htmlTabla;
 
         }
+
+        $(document).ready(function () {
+            $("#btnAgregar").click(function () {
+                $.post("/CampingController/SaveServPorCamp", servicios,
+                    function (response, status) { // Required Callback Function
+                        alert("*----Received Data----*\n\nResponse : " + response + "\n\nStatus : " + status);//"response" receives -
+                    });
+
+            });
+        });
+      
 
 
 

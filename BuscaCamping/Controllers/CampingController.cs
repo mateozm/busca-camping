@@ -7,6 +7,7 @@ using BuscaCamping.DataAccess.DataReaders;
 using BuscaCamping.DataAccess.Modelo;
 using BuscaCamping.DataAccess.ViewModels;
 using System.ComponentModel.DataAnnotations;
+using BuscaCamping.DTO;
 
 
 namespace BuscaCamping.Controllers
@@ -24,6 +25,12 @@ namespace BuscaCamping.Controllers
         {
             var camping = gc.ObtenerListaCamping();
             return View(camping);
+        }
+
+        public ActionResult SaveServPorCamp(List<ServiciosPorCampingDto> servicios)
+        {
+
+            return null;
         }
 
         // GET: Camping/Details/5

@@ -44,19 +44,25 @@
   <ItemGroup>
     <Compile Include="DataReaders\GestorCamping.cs" />
     <Compile Include="DataReaders\GestorCliente.cs" />
+    <Compile Include="DataReaders\GestorBusqueda.cs" />
     <Compile Include="DataReaders\GestorServicio.cs" />
     <Compile Include="DataReaders\GestorZonas.cs" />
+    <Compile Include="DataReaders\GestorReserva.cs" />
+    <Compile Include="DTO\Busqueda.cs" />
     <Compile Include="Modelo\Camping.cs" />
     <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Departamento.cs" />
+    <Compile Include="Modelo\DetalleReserva.cs" />
     <Compile Include="Modelo\Localidad.cs" />
     <Compile Include="Modelo\Provincia.cs" />
     <Compile Include="Modelo\ServicioCamping.cs" />
     <Compile Include="Modelo\ServicioPorCamping.cs" />
+    <Compile Include="DTO\ServiciosPorCampingDto.cs" />
     <Compile Include="Modelo\TipoSexo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CampingViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
+    <Compile Include="ViewModels\ReservaViewModel.cs" />
     <Compile Include="ViewModels\ServicioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

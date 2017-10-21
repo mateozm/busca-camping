@@ -106,11 +106,51 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar Cambios" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
+
+<div class="container table-responsive">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr class="bg-primary">
+
+                    <th>
+                        Servicio
+                    </th>
+                    <th>
+                        Precio
+                    </th>
+                    <th colspan="2">Acciones</th>
+
+                </tr>
+
+                @foreach (var item in Model.ListaServicioPorCamping)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DescripcionServ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td> @Html.ActionLink("Modificar", "EditServPorCamp", "Servicios",  new { idServicioPorCamping = item.IdServicioPorCamping },null) </td>                        
+                        <td>@Html.ActionLink("Eliminar", "DeleteServicioPorCamping", "Servicios", new { id = item.IdServicioPorCamping }, new { onclick = "return confirm('Esta seguro de eliminar Servicio?');" })</td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
 
 <div>
     @Html.ActionLink("Volver", "IndexCamping")

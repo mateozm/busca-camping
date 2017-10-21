@@ -1,0 +1,102 @@
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.Camping>
+
+@{
+    ViewBag.Title = "BuscarPorProvincia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+
+
+    @using (Html.BeginForm())
+    {
+
+        <div class="row">
+            <aside class="columnas col-md-3">
+                <h3><span class="label label-primary">Otros Filtros</span></h3>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="1">
+                        Carpa
+                    </label>                   
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="2">
+                        Cabaña p/2
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="3">
+                        Cabaña p/4
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="4">
+                        Wi-fi
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="5">
+                        Piscina
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="chkServicio" value="6">
+                        Acepta Animales
+                    </label>
+                </div>
+                <input type="button" value="Agregar Servicios" id="btnAgrServ" class="btn btn-primary"  />
+
+            </aside>
+            <div class="columnas col-md-6">
+                <h3><span class="label label-primary">Buscar por provincia/departamento/localidad</span></h3>
+                <input type="text" name="nombre" id="nombreModelo" class="form-control" style="float:left" />
+
+
+                <input type="submit" value="Buscar" id="btnBuscar" class="btn btn-primary" style="margin-left:10px" />
+            </div>
+            <div class="columnas col-md-3"></div>
+        </div>
+
+    }
+</div>
+
+
+
+
+
+<div class="container" style="margin:20px">
+    <div class="row">
+        <div class="columnas col-md-12">
+            <aside class="col-md-3">     
+            </aside>
+
+            <div class="list-group col-md-9">
+
+
+
+
+                @foreach (var item in Model)
+                {                                
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="..." alt="...">
+                            <div class="caption">
+                                <h3>@Html.DisplayFor(modelItem => item.NombreCamping)</h3>
+                                <p>...</p>
+                                <p><a href="#" class="btn btn-primary" role="button">Ver</a>
+                            </div>
+                        </div>
+                    </div>         
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+

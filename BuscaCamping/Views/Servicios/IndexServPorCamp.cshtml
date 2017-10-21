@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.ServicioPorCamping>
+
+@{
+    ViewBag.Title = "IndexServPorCamp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Servicios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container table-responsive">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr class="bg-primary">
+                    <th>
+                        @Html.DisplayNameFor(model => model.NombreCamping)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DescripcionServ)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Precio)
+                    </th>
+                    
+                    <th colspan="2" style="text-align:center">Acciones</th>
+                    
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreCamping)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DescripcionServ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Precio)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Modificar", "EditServPorCamp", new { idServicioPorCamping = item.IdServicioPorCamping }) 
+                        </td>
+                        <td>@Html.ActionLink("Eliminar", "DeleteServicioPorCamping", new { id = item.IdServicioPorCamping }, new { onclick = "return confirm('Esta seguro de eliminar Cliente?');" })</td>
+                        
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+    </div>
+</div>

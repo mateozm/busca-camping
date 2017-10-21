@@ -7,7 +7,7 @@ using BuscaCamping.DataAccess.DataReaders;
 using BuscaCamping.DataAccess.Modelo;
 using BuscaCamping.DataAccess.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using BuscaCamping.DTO;
+
 
 
 namespace BuscaCamping.Controllers
@@ -16,28 +16,25 @@ namespace BuscaCamping.Controllers
     {
         GestorCamping gc = new GestorCamping();
         GestorZonas gz = new GestorZonas();
-        CampingViewModel cvm = new CampingViewModel();
-        ServicioViewModel svm = new ServicioViewModel();
+        CampingViewModel cvm = new CampingViewModel();        
         GestorServicio gs = new GestorServicio();
 
         // GET: Camping
         public ActionResult IndexCamping()
         {
-            var camping = gc.ObtenerListaCamping();
-            return View(camping);
+            cvm.ListaCamping = gc.ObtenerListaCamping();
+            return View(cvm);
         }
 
-        public ActionResult SaveServPorCamp(List<ServiciosPorCampingDto> servicios)
-        {
-
-            return null;
-        }
+       
+       
 
         // GET: Camping/Details/5
         public ActionResult DetailsCamping(int id)
         {
-            var camping = gc.ObtenerCamping(id);
-            return View(camping);
+            cvm.camping = gc.ObtenerCamping(id);
+            cvm.ListaServicioPorCamping = gs.ObtenerListaServiciosPorCamping(id);
+            return View(cvm);
         }
 
         public JsonResult ListarDepartamentos(int id)
@@ -58,7 +55,7 @@ namespace BuscaCamping.Controllers
         public ActionResult CreateCamping()
         {
             ViewData["prov"] = gz.ObtenerProvincias().ConvertAll(x => new SelectListItem { Text = x.NombreProvincia, Value = x.IdProvincia.ToString() });
-            cvm.Listaservicios = gs.ObtenerTodosServicios();
+            //cvm.Listaservicios = gs.ObtenerTodosServicios();
 
             return View(cvm);
         }
@@ -68,7 +65,7 @@ namespace BuscaCamping.Controllers
         public ActionResult CreateCamping(CampingViewModel cvm)
         {
             gc.AgregarCamping(cvm);
-            return RedirectToAction("AgregarServicios");
+            return RedirectToAction("SaveServPorCamp", "Servicios");
         }
 
         // GET: Camping/Edit/5
@@ -76,6 +73,7 @@ namespace BuscaCamping.Controllers
         {
             ViewData["prov"] = gz.ObtenerProvincias().ConvertAll(x => new SelectListItem { Text = x.NombreProvincia, Value = x.IdProvincia.ToString() });
             cvm.camping = gc.ObtenerCamping(idCamping);
+            cvm.ListaServicioPorCamping = gs.ObtenerListaServiciosPorCamping(idCamping);
 
             return View(cvm);
         }

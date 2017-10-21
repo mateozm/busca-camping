@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace BuscaCamping.DataAccess.Modelo
 {
     public class Camping
@@ -32,8 +33,7 @@ namespace BuscaCamping.DataAccess.Modelo
             IdProvincia = idProvincia;
             NombreLocalidad = nombreLocalidad;
             NombreDepartamento = nombreDepartamento;
-            NombreProvincia = nombreProvincia;
-            ListaServicios = new List<ServicioPorCamping>();
+            NombreProvincia = nombreProvincia;            
             IdServicio = 0;
             DescripcionServicio = "";
             Precio = 0;
@@ -75,8 +75,7 @@ namespace BuscaCamping.DataAccess.Modelo
         [Display(Name = "Departamento")]
         public string NombreDepartamento { get; set; }
         [Display(Name = "Provincia")]
-        public string NombreProvincia { get; set; }
-        public List<ServicioPorCamping> ListaServicios { get; set; }
+        public string NombreProvincia { get; set; }        
         [Display(Name = "Servicio")]
         public int IdServicio { get; set; }
         public string DescripcionServicio { get; set; }

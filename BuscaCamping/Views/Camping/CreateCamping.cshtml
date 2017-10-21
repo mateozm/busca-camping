@@ -9,7 +9,7 @@
 <h2>Agregar Camping</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(new { id = "formularioCamping" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -113,7 +113,7 @@
 
         <br /> 
         
-        <h2>Agregar Servicios</h2>   
+        @*<h2>Agregar Servicios</h2>   
         
         <hr />          
     
@@ -139,13 +139,13 @@
                     <input type="button" value="Agregar Servicio" class="btn btn-warning" id="btnServicio" onclick="cargarServicios()"/>
                 </div>
             </div>
-        </div>   
+        </div>*@   
 
         
 
     </div>
 
-    <div class="form-horizontal" >
+    @*<div class="form-horizontal" >
 
         <div id="container">
             <div id="dataTable">
@@ -167,11 +167,11 @@
 
     <hr />
     <br />
-    <br />
+    <br />*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Agregar Camping" class="btn btn-success" id="btnAgregar" />
+            <input type="submit" value="Agregar Camping" class="btn btn-success"  />
         </div>
     </div>
 
@@ -179,7 +179,7 @@
 }
 
         <div>
-            @Html.ActionLink("Back to List", "IndexCamping")
+            @Html.ActionLink("Volver", "IndexCamping")
         </div>
 
         @section Scripts {

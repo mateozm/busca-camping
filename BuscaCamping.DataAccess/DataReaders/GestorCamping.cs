@@ -61,7 +61,7 @@ namespace BuscaCamping.DataAccess.DataReaders
             Camping c = null;
             conn.Open();
 
-            SqlCommand comm = new SqlCommand("select c.idCamping,c.nombreCamping,c.cantParcelas,c.calle,c.numeroCalle,dc.email,dc.telFijo,dc.celular,c.idDatosCamping ,c.idLocalidad,l.idDepartamento,d.idProvincia,  l.nombreLocalidad, d.nombreDepartamento, p.nombreProvincia from Camping c join DatosCamping dc on dc.idDatosCamping=c.idDatosCamping join Localidad l on c.idLocalidad=l.idLocalidad join Departamento d on d.idDepartamento=l.idDepartamento join Provincia p on p.idProvincia=d.idProvincia where idCamping = @id", conn);
+            SqlCommand comm = new SqlCommand("select c.idCamping,c.nombreCamping,c.cantParcelas,c.calle,c.numeroCalle,dc.email,dc.telFijo,dc.celular,c.idDatosCamping ,c.idLocalidad,l.idDepartamento,d.idProvincia,  l.nombreLocalidad, d.nombreDepartamento, p.nombreProvincia from Camping c join DatosCamping dc on dc.idDatosCamping=c.idDatosCamping join Localidad l on c.idLocalidad=l.idLocalidad join Departamento d on d.idDepartamento=l.idDepartamento join Provincia p on p.idProvincia=d.idProvincia where c.idCamping = @id", conn);
             comm.Parameters.Add(new SqlParameter("@id", id));
             SqlDataReader dr = comm.ExecuteReader();
             if (dr.Read())
@@ -81,6 +81,7 @@ namespace BuscaCamping.DataAccess.DataReaders
                 string NombreLocalidad = dr.GetString(12);
                 string NombreDepartamento = dr.GetString(13);
                 string NombreProvincia = dr.GetString(14);
+                
 
                 c = new Camping(IdCamping, NombreCamping, CantParcelas, Calle, NumeroCalle, Email, TelFijo, Celular, IdDatosCamping, IdLocalidad, IdDepartamento, IdProvincia, NombreLocalidad, NombreDepartamento, NombreProvincia);
             }

@@ -7,8 +7,14 @@ namespace BuscaCamping.DTO
 {
     public class ServiciosPorCampingDto
     {
-           public int idText { get; set; }
+           public int idCamping { get; set; }
+           public int idServicio { get; set; }
            public string descripcion { get; set; }
            public float precio { get; set; }
+    }
+
+    public class Servicios
+    {
+        public ServiciosPorCampingDto[] values { get; set; }
     }
 }

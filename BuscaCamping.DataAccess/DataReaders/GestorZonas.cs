@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using BuscaCamping.DataAccess.Modelo;
-
+using BuscaCamping.DataAccess.DTO;
 namespace BuscaCamping.DataAccess.DataReaders
 {
     public class GestorZonas
@@ -83,6 +83,30 @@ namespace BuscaCamping.DataAccess.DataReaders
 
             conn.Close();
             return localidades;
+        }
+
+
+
+        public List<Busqueda> ObtenerTodas()
+        {
+            List<Busqueda> provincias = new List<Busqueda>();
+
+            conn.Open();
+
+            SqlCommand comm = new SqlCommand("select  nombreLocalidad from Localidad union select  nombreDepartamento from Departamento union select nombreProvincia from Provincia", conn);
+            SqlDataReader dr = comm.ExecuteReader();
+            while (dr.Read())
+            {
+                provincias.Add(new Busqueda
+                {
+                   
+                    NombreBusqueda = dr.GetString(0)
+
+                });
+            }
+
+            conn.Close();
+            return provincias;
         }
 
     }

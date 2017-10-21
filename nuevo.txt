@@ -1,0 +1,9 @@
+select idLocalidad, nombreLocalidad from Localidad union select idDepartamento, nombreDepartamento from Departamento union select idProvincia, nombreProvincia from Provincia
+
+select c.idCamping,c.nombreCamping,c.cantParcelas,c.calle,c.numeroCalle,dc.email,dc.telFijo,dc.celular,c.idDatosCamping ,c.idLocalidad,l.idDepartamento,d.idProvincia,  l.nombreLocalidad, d.nombreDepartamento, p.nombreProvincia from Camping c join DatosCamping dc on dc.idDatosCamping=c.idDatosCamping join Localidad l on c.idLocalidad=l.idLocalidad join Departamento d on d.idDepartamento=l.idDepartamento join Provincia p on p.idProvincia=d.idProvincia where p.nombreProvincia = 'B' or d.nombreDepartamento='Punilla'
+
+
+
+
+select distinct c.idCamping,c.nombreCamping,c.cantParcelas,c.calle,c.numeroCalle,dc.email,dc.telFijo,dc.celular,c.idDatosCamping ,c.idLocalidad,l.idDepartamento,d.idProvincia,  l.nombreLocalidad, d.nombreDepartamento, p.nombreProvincia from Camping c join DatosCamping dc on dc.idDatosCamping=c.idDatosCamping join Localidad l on c.idLocalidad=l.idLocalidad join Departamento d on d.idDepartamento=l.idDepartamento join Provincia p on p.idProvincia=d.idProvincia join ServicioPorCamping s on s.idCamping=c.idCamping
+ where p.nombreProvincia = 'Córdoba' or d.nombreDepartamento='Punilla' or l.nombreLocalidad='La Boca' or s.idServicio=1 or s.idServicio=3

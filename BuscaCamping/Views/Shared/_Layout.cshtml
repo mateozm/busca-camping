@@ -68,9 +68,10 @@
 
         })
 
-        function ServicioPorCamping(idText, descripcion,precio) {
+        function ServicioPorCamping(idCamping,idServicio, descripcion, precio) {
 
-            this.idText = idText;
+            this.idCamping = idCamping;
+            this.idServicio = idServicio;
             this.descripcion = descripcion;
             this.precio = precio;
         }
@@ -78,23 +79,25 @@
         var servicios = [];
 
         function cargarServicios() {
-          
-            var idText = document.getElementById("camping_IdServicio").value;
-            var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
-            var precio = document.getElementById("camping_Precio").value;
 
-            if (!Number.isInteger(+precio)) {
-                alert('Valor no valido');
-                return;
-            } else if (idText == "") {
+            var idCamping = parseInt(document.getElementById("camping_IdCamping").value);
+            var idServicio = parseInt(document.getElementById("camping_IdServicio").value);
+            var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
+            var precio = parseFloat(document.getElementById("camping_Precio").value);
+
+            if (document.getElementById("camping_IdServicio").value == "") {
                 alert('Debe elegir un servicio');
+                return;
+            } else if (document.getElementById("camping_Precio").value == "") {
+                alert('Ingrese Precio');
                 return;
             }
 
-            var serv = new ServicioPorCamping(idText, descripcion, precio);
+         
+            var serv = new ServicioPorCamping(idCamping,idServicio, descripcion, precio);
 
             for (var i = 0; i < servicios.length; i++) {
-                if (servicios[i].idText==serv.idText) {
+                if (servicios[i].idServicio==serv.idServicio) {
                     alert('El servicio ya fue agregado en la lista');
                     return;
                 }
@@ -115,23 +118,44 @@
             var htmlTabla;
 
             for (var i = 0; i < servicios.length; i++) {
-                var htmlTabla = "<tr><td>" + servicios[i].idText + "</td><td>" + servicios[i].descripcion + "</td><td>" + servicios[i].precio + "</td></tr>";
+                var htmlTabla = "<tr><td>" + servicios[i].idServicio + "</td><td>" + servicios[i].descripcion + "</td><td>" + servicios[i].precio + "</td></tr>";
             }
 
             tabla.innerHTML += htmlTabla;
+
+
+            document.getElementById("camping_IdServicio").value = "";
+            document.getElementById("camping_Precio").value = "";
 
         }
 
         $(document).ready(function () {
             $("#btnAgregar").click(function () {
-                $.post("/CampingController/SaveServPorCamp", servicios,
-                    function (response, status) { // Required Callback Function
-                        alert("*----Received Data----*\n\nResponse : " + response + "\n\nStatus : " + status);//"response" receives -
-                    });
 
+                //var postData = { values: servicios };
+                postData = JSON.stringify({ 'values': servicios });
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/Servicios/SaveServPorCamp',
+                    data: postData,
+                    success: function () {
+                        //$('#result').html('"PassThings()" successfully called.');
+                        document.forms[0].submit();
+                        window.location = '@Url.Action("IndexCamping","Camping")';// Mandar a Lista de Servicios como paso el id?
+                    },
+                    failure: function (response) {
+                        //$('#result').html(response);
+                    }
+                });
             });
+
         });
-      
+
+
+
 
 
 
@@ -267,7 +291,42 @@
 
 
 
+        $(document).ready(function () {
+            $("#nombreModelo").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Busqueda/Index",
+                        type: "POST",
+                        dataType: "json",
+                        data: { Prefix: request.term },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.NombreBusqueda, value: item.NombreBusqueda };
+                            }))
 
+                        }
+                    })
+                },
+                messages: {
+                    noResults: function () { }, results: function () { }
+                }
+            });
+        });
+
+        
+        var selected = [];
+        $(document).ready(function () {
+            
+            $('#btnAgrServ').on('click', function () {
+                selected = [];
+            $("input:checkbox[name=chkServicio]:checked").each(function () {
+                selected.push(parseInt($(this).val()));
+            });
+            selected.push($('#nombreModelo').val())
+            });
+        });
+
+   
     </script>
 
     @RenderSection("scripts", required: false)

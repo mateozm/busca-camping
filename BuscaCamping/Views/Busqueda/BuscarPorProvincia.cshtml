@@ -90,6 +90,7 @@
                                 <h3>@Html.DisplayFor(modelItem => item.NombreCamping)</h3>
                                 <p>...</p>
                                 <p><a href="#" class="btn btn-primary" role="button">Ver</a>
+                                   <p>@Html.ActionLink("Ver", "DetailsCamping", "Camping", null,null,null, new { id = item.IdCamping }, new { @class = "btn btn-warning" })</p> 
                             </div>
                         </div>
                     </div>         

@@ -1,0 +1,87 @@
+﻿@model BuscaCamping.DataAccess.ViewModels.ReservaViewModel
+
+@{
+    ViewBag.Title = "IndexReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IndexReserva</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container table-responsive">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <tr class="bg-primary">
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.IdDetalleReserva)
+                    </th>                 
+                                      
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaIngreso)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaSalida)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.IdReserva)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaReserva)
+                    </th>                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.NombreCamping)
+                    </th>                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.NombreCliente)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DetalleReserva.IsActive)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.ListaReservas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdDetalleReserva)
+                        </td>                     
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaIngreso)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaSalida)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdReserva)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaReserva)
+                        </td>                     
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreCamping)
+                        </td>                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+

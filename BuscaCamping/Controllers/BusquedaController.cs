@@ -31,6 +31,7 @@ namespace BuscaCamping.Controllers
         [HttpPost]
         public ActionResult BuscarPorProvincia(string nombre)
         {
+            
             var CampingsPorProv = gb.BuscarPorProvincia(nombre);
             if (CampingsPorProv.Count == 0)
             {

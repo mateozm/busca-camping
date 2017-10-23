@@ -65,7 +65,7 @@ namespace BuscaCamping.Controllers
         public ActionResult CreateCamping(CampingViewModel cvm)
         {
             gc.AgregarCamping(cvm);
-            return RedirectToAction("SaveServPorCamp", "Servicios");
+            return RedirectToAction("SaveServPorCamp", "Servicios"/*, new { idCamping = cvm.camping.IdCamping }*/);
         }
 
         // GET: Camping/Edit/5

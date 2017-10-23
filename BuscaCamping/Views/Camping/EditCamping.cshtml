@@ -4,7 +4,7 @@
     ViewBag.Title = "EditCamping";
 }
 
-<h2>EditCamping</h2>
+<h2>Edite datos del camping</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Camping</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -112,10 +112,17 @@
     </div>
 }
 
+
+
 <div class="container table-responsive">
     <div class="row">
         <div class="col-md-12">
             <table class="table">
+
+                @Html.ActionLink("Agregar Servicios", "SaveServPorCamp", "Servicios", null, new { @class = "btn btn-warning" })
+
+                
+
                 <tr class="bg-primary">
 
                     <th>

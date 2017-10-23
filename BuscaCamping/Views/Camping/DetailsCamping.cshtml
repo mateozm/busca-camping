@@ -4,33 +4,13 @@
     ViewBag.Title = "DetailsCamping";
 }
 
-<h2>DetailsCamping</h2>
+<h2>@Html.DisplayFor(model => model.camping.NombreCamping)</h2>
 
 <div>
-    <h4>Camping</h4>
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.camping.IdCamping)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.camping.IdCamping)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.camping.NombreCamping)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.camping.NombreCamping)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.camping.CantParcelas)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.camping.CantParcelas)
-        </dd>
+      
         <dt>
             @Html.DisplayNameFor(model => model.camping.Calle)
         </dt>
@@ -88,6 +68,11 @@
 
     </dl>
     </div>
+<br />
+<br />
+<p>@Html.ActionLink("Reservar", "DetailsCamping", "Camping", null, null, null, new { id =Model.camping.IdCamping}, new { @class = "btn btn-warning" })</p> 
+<br />
+<br />
 
     <div class="container table-responsive">
         <div class="row">

@@ -279,6 +279,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReservaController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="DTO\ServiciosPorCampingDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -680,6 +681,7 @@
     <Content Include="Views\Servicios\IndexServPorCamp.cshtml" />
     <Content Include="Views\Servicios\EditServPorCamp.cshtml" />
     <Content Include="Views\Busqueda\BuscarPorProvincia.cshtml" />
+    <Content Include="Views\Reserva\IndexReserva.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

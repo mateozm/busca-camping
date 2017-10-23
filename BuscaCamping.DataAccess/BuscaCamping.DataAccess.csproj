@@ -49,6 +49,7 @@
     <Compile Include="DataReaders\GestorZonas.cs" />
     <Compile Include="DataReaders\GestorReserva.cs" />
     <Compile Include="DTO\Busqueda.cs" />
+    <Compile Include="DTO\ServicioPorReserva.cs" />
     <Compile Include="Modelo\Camping.cs" />
     <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Departamento.cs" />

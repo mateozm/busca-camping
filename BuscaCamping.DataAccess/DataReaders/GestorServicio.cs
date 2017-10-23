@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using BuscaCamping.DataAccess.Modelo;
 using BuscaCamping.DataAccess.ViewModels;
+using BuscaCamping.DataAccess.DTO;
 
 namespace BuscaCamping.DataAccess.DataReaders
 {
@@ -123,6 +124,29 @@ namespace BuscaCamping.DataAccess.DataReaders
             comm.ExecuteNonQuery();
             conn.Close();
         }
+
+        public List<ServicioPorReserva> ObtenerListaServiciosPorReserva(int id)
+        {
+            List<ServicioPorReserva> listaServiciosPorReserva = new List<ServicioPorReserva>();
+            conn.Open();
+
+            SqlCommand comm = new SqlCommand("Select  d.idServicio ,s.descripcion,d.precio, d.cantPersonas from DetalleReserva d join Servicio s on s.idServicio=d.idServicio where d.idDetalleReserva=@id ", conn);
+            comm.Parameters.Add(new SqlParameter("@id", id));
+            SqlDataReader dr = comm.ExecuteReader();
+            while (dr.Read())
+            {
+                listaServiciosPorReserva.Add(new ServicioPorReserva
+                {
+                    IdServicio = dr.GetInt32(0),
+                    Descripcion = dr.GetString(1),
+                    Precio = dr.GetFloat(2),
+                    CantPersonas = dr.GetInt32(3)
+            });
+            }
+            conn.Close();
+            return listaServiciosPorReserva;
+        }
+
 
 
     }

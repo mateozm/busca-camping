@@ -278,6 +278,7 @@
     <Compile Include="Controllers\CampingController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OpinionController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
@@ -693,6 +694,7 @@
     <Content Include="Views\Reserva\DetailsReserva.cshtml" />
     <Content Include="Views\Home\VistaAdministrador.cshtml" />
     <Content Include="Views\Opinion\CreateOpinion.cshtml" />
+    <Content Include="Views\Imagen\AddImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

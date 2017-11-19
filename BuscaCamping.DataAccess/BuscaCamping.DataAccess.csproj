@@ -57,6 +57,7 @@
     <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Departamento.cs" />
     <Compile Include="Modelo\DetalleReserva.cs" />
+    <Compile Include="Modelo\Imagen.cs" />
     <Compile Include="Modelo\Localidad.cs" />
     <Compile Include="Modelo\Opinion.cs" />
     <Compile Include="Modelo\Provincia.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="ViewModels\CampingViewModel.cs" />
     <Compile Include="ViewModels\ClienteViewModel.cs" />
     <Compile Include="ViewModels\DetalleReservaViewModel.cs" />
+    <Compile Include="ViewModels\ImagenViewModel.cs" />
     <Compile Include="ViewModels\OpinionViewModel.cs" />
     <Compile Include="ViewModels\ServicioViewModel.cs" />
   </ItemGroup>

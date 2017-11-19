@@ -125,23 +125,24 @@ namespace BuscaCamping.DataAccess.DataReaders
             conn.Close();
         }
 
-        public List<ServicioPorReserva> ObtenerListaServiciosPorReserva(int id)
+
+
+        public List<ServicioAlojamiento> ObtenerListaServiciosAlojamiento(int id)
         {
-            List<ServicioPorReserva> listaServiciosPorReserva = new List<ServicioPorReserva>();
+            List<ServicioAlojamiento> listaServiciosPorReserva = new List<ServicioAlojamiento>();
             conn.Open();
 
-            SqlCommand comm = new SqlCommand("Select  d.idServicio ,s.descripcion,d.precio, d.cantPersonas from DetalleReserva d join Servicio s on s.idServicio=d.idServicio where d.idDetalleReserva=@id ", conn);
+            SqlCommand comm = new SqlCommand("select s.idServicio,s.descripcion,sc.precio from Servicio s join ServicioPorCamping sc on sc.idServicio=s.idServicio where sc.idServicio between 1 and 3 and sc.idCamping=@id", conn);
             comm.Parameters.Add(new SqlParameter("@id", id));
             SqlDataReader dr = comm.ExecuteReader();
             while (dr.Read())
             {
-                listaServiciosPorReserva.Add(new ServicioPorReserva
+                listaServiciosPorReserva.Add(new ServicioAlojamiento
                 {
                     IdServicio = dr.GetInt32(0),
                     Descripcion = dr.GetString(1),
-                    Precio = dr.GetFloat(2),
-                    CantPersonas = dr.GetInt32(3)
-            });
+                    Precio=dr.GetFloat(2)
+                });
             }
             conn.Close();
             return listaServiciosPorReserva;

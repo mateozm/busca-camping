@@ -8,14 +8,17 @@ using System.ComponentModel.DataAnnotations;
 namespace BuscaCamping.DataAccess.Modelo
 {
     public class DetalleReserva
-    {   
+    {
 
-        public DetalleReserva(int idDetalleReserva, int idServicio, string descripcion, float precio, int cantPersonas, DateTime fechaIngreso, DateTime fechaSalida, int idReserva, DateTime fechaReserva, int idCamping, string nombreCamping, int idCliente, string nombreCliente, bool isActive)
+
+        public DetalleReserva()
         {
-            IdDetalleReserva = idDetalleReserva;
-            IdServicio = idServicio;
-            Descripcion = descripcion;
-            Precio = precio;
+
+        }
+
+        public DetalleReserva(int idDetalleReserva, int cantPersonas, DateTime fechaIngreso, DateTime fechaSalida, int idReserva, DateTime fechaReserva, int idCamping, string nombreCamping, int idCliente, string nombreCliente, bool isActive)
+        {
+            IdDetalleReserva = idDetalleReserva;            
             CantPersonas = cantPersonas;
             FechaIngreso = fechaIngreso;
             FechaSalida = fechaSalida;
@@ -26,12 +29,13 @@ namespace BuscaCamping.DataAccess.Modelo
             IdCliente = idCliente;
             NombreCliente = nombreCliente;
             IsActive = isActive;
+            IdServicio = 0;
+            Descripcion = "";
+            Precio = 0;
+            
         }
 
-        public DetalleReserva()
-        {
-
-        }
+      
         [Display(Name = "Código")]
         public int IdDetalleReserva { get; set; }
         [Display(Name = "Servicio")]
@@ -41,23 +45,28 @@ namespace BuscaCamping.DataAccess.Modelo
         [Display(Name = "Cant Personas")]
         public int CantPersonas { get; set; }
         [Display(Name = "Fecha Ing.")]
+        [DataType(DataType.Date)]
         public DateTime FechaIngreso { get; set; }
         [Display(Name = "Fecha Sal.")]
+        [DataType(DataType.Date)]
         public DateTime FechaSalida { get; set; }
         [Display(Name = "Cod. Res.")]
         public int IdReserva { get; set; }
         [Display(Name = "Fecha Res.")]
+        [DataType(DataType.Date)]
         public DateTime FechaReserva { get; set; }
         [Display(Name = "Cod. Camping")]
         public int IdCamping { get; set; }
         [Display(Name = "Camping")]
         public string NombreCamping { get; set; }
-        [Display(Name = "Cod. Cli.")]
+        [Display(Name = "Cliente N°")]
         public int IdCliente { get; set; }
         [Display(Name = "Cliente")]
         public string NombreCliente { get; set; }
-        [Display(Name = "Fecha Ing")]
+        [Display(Name = "Activa")]
         public bool IsActive { get; set; }
+
+       
 
 
 

@@ -1,0 +1,267 @@
+﻿@model BuscaCamping.DataAccess.ViewModels.DetalleReservaViewModel
+
+@{
+    ViewBag.Title = "CreateDetalleReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles Reserva</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-horizontal">
+
+            <div class="servicios">             
+          
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Camping.NombreCamping, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Camping.NombreCamping, new { htmlAttributes = new { @readonly = "true", @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Camping.NombreCamping, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DetalleReserva.IdServicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.DetalleReserva.IdServicio,
+                new SelectList(@Model.ListaServiciosAlojamiento, "idServicio", "descripcion"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DetalleReserva.IdServicio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DetalleReserva.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DetalleReserva.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DetalleReserva.Precio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DetalleReserva.CantPersonas, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DetalleReserva.CantPersonas, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DetalleReserva.CantPersonas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DetalleReserva.FechaIngreso, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.DetalleReserva.FechaIngreso, "", new { @class = "date-picker", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.DetalleReserva.FechaIngreso, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DetalleReserva.FechaSalida, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.DetalleReserva.FechaSalida, "", new { @class = "date-picker", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.DetalleReserva.FechaSalida, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="Agregar Servicio" class="btn btn-warning" id="btnDetalle" onclick="cargarDetalle()" />
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="form-horizontal">
+
+            <div id="container">
+                <div id="dataTable">
+                    <h2>Detalle</h2>
+                    <table id="myDataTable" class="table">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Precio</th>
+                                <th>Cant. Personas</th>
+                                <th>Fecha Ing.</th>
+                                <th>Fecha Sal.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lstDetalle"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <hr />
+        <br />
+        <br />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Reservar" class="btn btn-success" id="btnAgregarDetalle" />
+            </div>
+        </div>
+
+        </div>
+
+
+
+
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+
+@section Scripts {
+   
+
+<script>
+        $(function () {
+            // This will make every element with the class "date-picker" into a DatePicker element
+            $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '2017:2099 ', changeMonth: true, changeYear: true, minDate: '0', maxDate: '31-12-2099' });
+
+        })
+
+        function DetalleReserva(idServicio, descripcion, precio, cantPersonas, fechaIngreso, fechaSalida) {
+
+
+            this.idServicio = idServicio;
+            this.descripcion = descripcion;
+            this.precio = precio;
+            this.cantPersonas = cantPersonas;
+            this.fechaIngreso = fechaIngreso;
+            this.fechaSalida = fechaSalida;
+
+        }
+
+        var detalles = [];
+        var idCamp= @Model.Camping.IdCamping;
+
+
+
+
+        function cargarDetalle() {
+
+            var idServicio = parseInt(document.getElementById("DetalleReserva_IdServicio").value);
+            var descripcion = document.getElementById("DetalleReserva_IdServicio").options[document.getElementById("DetalleReserva_IdServicio").selectedIndex].text;
+            var precio = parseFloat(document.getElementById("DetalleReserva_Precio").value);
+            var cantPers = parseInt(document.getElementById("DetalleReserva_CantPersonas").value);
+            var fechaIng = document.getElementById("DetalleReserva_FechaIngreso").value;
+            var fechaSal = document.getElementById("DetalleReserva_FechaSalida").value;
+
+
+
+            if (document.getElementById("DetalleReserva_IdServicio").value == "") {
+                alert('Debe elegir un servicio');
+                return;
+            } else if (document.getElementById("DetalleReserva_Precio").value == "") {
+                alert('Ingrese Precio');
+                return;
+            } else if (document.getElementById("DetalleReserva_CantPersonas").value == "") {
+                alert('Ingrese Cantidad de Personas')
+                return;
+            } else if (document.getElementById("DetalleReserva_FechaIngreso").value == "") {
+                alert('Ingrese Fecha Ingreso')
+                return;
+            } else if (document.getElementById("DetalleReserva_FechaSalida").value == "") {
+                alert('Ingrese Fecha Salida')
+                return;
+            }
+
+
+            var det = new DetalleReserva(idServicio, descripcion, precio, cantPers, fechaIng, fechaSal);
+
+            //for (var i = 0; i < detalle.length; i++) {
+            //    if (detalle[i].idServicio == serv.idServicio) {
+            //        alert('El servicio ya fue agregado en la lista');
+            //        return;
+            //    }
+            //}
+
+            //if (confirm('Los datos del servicio son Correctos? \n Servicio: ' + descripcion + ' Precio: ' + precio +
+            //    '\n Si los Datos Son correctos presione OK')) {
+            //    servicios.push(serv);
+            //    agregarServicio(serv);
+            //} else {
+            //    return;
+            //}
+
+            detalles.push(det);
+            agregarDetalle(det);
+
+
+
+        }
+
+
+        function agregarDetalle(detalle) {
+
+            var tabla = document.getElementById("lstDetalle");
+            var htmlTabla;
+
+            for (var i = 0; i < detalles.length; i++) {
+                var htmlTabla = "<tr><td>" + detalles[i].descripcion + "</td><td>" + detalles[i].precio + "</td><td>" + detalles[i].cantPersonas + "</td><td>" + detalles[i].fechaIngreso + "</td><td>" + detalles[i].fechaSalida + "</td></tr>";
+            }
+
+            tabla.innerHTML += htmlTabla;
+
+
+            document.getElementById("DetalleReserva_IdServicio").value = "";
+            document.getElementById("DetalleReserva_Precio").value = "";
+            document.getElementById("DetalleReserva_CantPersonas").value = "";
+            document.getElementById("DetalleReserva_FechaIngreso").value = "";
+            document.getElementById("DetalleReserva_FechaSalida").value = "";
+
+
+        }
+
+
+
+        $(document).ready(function () {
+            $("#btnAgregarDetalle").click(function () {
+
+
+                postData = JSON.stringify({ idCamp:idCamp,'values':detalles });
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/Reserva/CreateReserva',
+                    data: postData,
+                    success: function (response) {
+                        if(response.success){
+                            alert('Registro Agregado con exito!');
+                            window.location = '@Url.Action("BuscarPorProvincia","Busqueda")';
+
+                        }else{
+                            alert('Debe Completar su Registro');
+                            window.location = '@Url.Action("Create","Cliente")';
+
+                            }
+
+                    },
+                    failure: function (response) {
+
+                    }
+                });
+            });
+
+        });
+
+</script>
+
+}
+

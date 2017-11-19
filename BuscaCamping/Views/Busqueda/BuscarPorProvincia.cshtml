@@ -5,8 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container ">
 
+
+<div class="container ">
+ 
 
     @using (Html.BeginForm())
     {
@@ -58,46 +60,140 @@
                 <input type="text" name="nombre" id="nombreModelo" class="form-control" style="float:left" />
 
 
-                <input type="submit" value="Buscar" id="btnBuscar" class="btn btn-primary" style="margin-left:10px" />
-            </div>
-            <div class="columnas col-md-3"></div>
+                <input type="button" value="Buscar" id="btnBuscarPorParam" class="btn btn-primary" style="margin-left:10px" />
+                <br />
+                <br/>
+
+                <div class="list-group col-md-9" id="lst-param">
+
+
+
+
+                    @foreach (var item in Model)
+                    {
+
+
+                       
+                            <div class="thumbnail" >
+                                <img src="..." alt="...">
+                                <div class="caption" >
+                                    <h3>@Html.DisplayFor(modelItem => item.NombreCamping)</h3>
+                                    <p>...</p>                                    
+                                    <p>@Html.ActionLink("Ver", "DetailsCamping", "Camping", null, null, null, new { id = item.IdCamping }, new { @class = "btn btn-primary" })</p>
+                                </div>
+                            </div>
+                        
+                    }
+                </div>
+
+               
+                <div class="list-group col-md-9" id="lst-parametros">
+
+                </div>
+
+
+                </div>
+           
         </div>
 
     }
 </div>
 
 
+@section scripts{
 
 
+    <script>
+             $(document).ready(function () {
+                 $("#nombreModelo").autocomplete({
+                     source: function (request, response) {
+                         $.ajax({
+                             url: "/Busqueda/Index",
+                             type: "POST",
+                             dataType: "json",
+                             data: { Prefix: request.term },
+                             success: function (data) {
+                                 response($.map(data, function (item) {
+                                     return { label: item.NombreBusqueda, value: item.NombreBusqueda };
+                                 }))
 
-<div class="container" style="margin:20px">
-    <div class="row">
-        <div class="columnas col-md-12">
-            <aside class="col-md-3">     
-            </aside>
+                             }
+                         })
+                     },
+                     messages: {
+                         noResults: function () { }, results: function () { }
+                     }
+                 });
+             });
 
-            <div class="list-group col-md-9">
+        var array = {};
+        var selected = [];
+        var nombre = "";
+        var total = 0;
 
+        $(document).ready(function () {
 
+            $('#btnAgrServ').on('click', function () {
+                selected = [];
+                nombre=($('#nombreModelo').val());
+                $("input:checkbox[name=chkServicio]:checked").each(function () {
+                    selected.push(parseInt($(this).val()));
+                });
 
+                total = selected.length;
+                          
 
-                @foreach (var item in Model)
-                {                                
-                    <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                            <img src="..." alt="...">
-                            <div class="caption">
-                                <h3>@Html.DisplayFor(modelItem => item.NombreCamping)</h3>
-                                <p>...</p>
-                                <p><a href="#" class="btn btn-primary" role="button">Ver</a>
-                                   <p>@Html.ActionLink("Ver", "DetailsCamping", "Camping", null,null,null, new { id = item.IdCamping }, new { @class = "btn btn-warning" })</p> 
-                            </div>
-                        </div>
-                    </div>         
-                }
-            </div>
+            });
+        });
 
-        </div>
-    </div>
-</div>
+        $(document).ready(function () {
+            $("#btnBuscarPorParam").click(function () {
+
+                //var postData = { values: servicios };
+                postData = JSON.stringify({ 'values': null, nombre, selected, total });
+                document.getElementById("lst-parametros").innerHTML="";
+                var lista = document.getElementById("lst-parametros");
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/Busqueda/BuscarPorProvincia',
+                    data: postData,
+                    success: function (response) {                         
+                        //alert(JSON.stringify(response[0].IdCamping));
+
+                        
+                        var htmlLista;
+
+                        if (response.length > 0) {
+                            document.getElementById("lst-param").innerHTML = "";
+                            for (var i = 0; i < response.length; i++) {
+                                
+                                htmlLista = "<div class='thumbnail'><img src='...' alt='...'><div class='caption'><h3>" + response[i].NombreCamping + "</h3><p>...</p><a href='/Camping/DetailsCamping/"+response[i].IdCamping +"' class='btn btn-primary'>Ver</a></div></div></div>";
+                            }
+
+                            lista.innerHTML += htmlLista;
+                        } else {
+                            alert(response.msg)
+                        }
+                            
+                        
+                        
+
+                    },
+                    failure: function (response) {
+                        //$('#result').html(response);
+                    }
+                });
+            });
+
+        });
+
+       
+
+       
+    </script>
+
+}
 

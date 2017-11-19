@@ -1,4 +1,4 @@
-﻿@model BuscaCamping.DataAccess.ViewModels.ReservaViewModel
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.Reserva>
 
 @{
     ViewBag.Title = "IndexReserva";
@@ -16,72 +16,65 @@
             <table class="table">
                 <tr class="bg-primary">
                     <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.IdDetalleReserva)
-                    </th>                 
-                                      
-                    <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaIngreso)
+                        @Html.DisplayNameFor(model => model.IdReserva)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaSalida)
+                        @Html.DisplayNameFor(model => model.FechaReserva)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.IdReserva)
+                        @Html.DisplayNameFor(model => model.IdCliente)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.FechaReserva)
-                    </th>                   
-                    <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.NombreCamping)
-                    </th>                    
-                    <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.NombreCliente)
+                        @Html.DisplayNameFor(model => model.IdCamping)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.DetalleReserva.IsActive)
+                        @Html.DisplayNameFor(model => model.IsActive)
                     </th>
-                    <th></th>
+                     
+                    <th colspan="2">Acciones</th>
                 </tr>
 
-                @foreach (var item in Model.ListaReservas)
+                @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdDetalleReserva)
-                        </td>                     
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaIngreso)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaSalida)
-                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.IdReserva)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaReserva)
-                        </td>                     
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreCamping)
-                        </td>                        
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreCliente)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.IsActive)
+                            @Html.DisplayFor(modelItem => item.IdCliente)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                            @Html.DisplayFor(modelItem => item.IdCamping)
                         </td>
+                        <td>
+                            @item.estadoReserva()
+                        </td>
+                        <td>
+    @if (@item.IsActive)
+    {
+    @Html.ActionLink("Cancelar", "CancelarReserva", new { idReserva = item.IdReserva }, new { onclick = "return confirm('Esta seguro de cancelarReserva?');" })
+    }
+    else
+    {
+    @Html.ActionLink("Cancelar", "CancelarReserva", new { idReserva = item.IdReserva }, new { @class = "not-active" }) ;
+    }
+</td>
+                        <td>@Html.ActionLink("Consultar", "DetailsReserva", new { id = item.IdReserva })</td>
+
                     </tr>
                 }
 
             </table>
         </div>
-
-
     </div>
 </div>
 
+<style>
+    .not-active {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>

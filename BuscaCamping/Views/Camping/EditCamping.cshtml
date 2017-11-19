@@ -119,7 +119,7 @@
         <div class="col-md-12">
             <table class="table">
 
-                @Html.ActionLink("Agregar Servicios", "SaveServPorCamp", "Servicios", null, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Agregar Servicios", "SaveServPorCamp", "Servicios", null,null,null, new { idCamping = @Model.camping.IdCamping }, new { @class = "btn btn-warning" })
 
                 
 

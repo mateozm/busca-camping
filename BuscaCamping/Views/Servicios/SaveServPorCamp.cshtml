@@ -1,4 +1,4 @@
-﻿@model BuscaCamping.DataAccess.ViewModels.CampingViewModel
+﻿@model BuscaCamping.DataAccess.ViewModels.ServicioViewModel
 
 @{
     ViewBag.Title = "SaveServPorCamp";
@@ -26,7 +26,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.camping.IdCamping, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.camping.IdCamping, new {  @class = "form-control" })
+                        @Html.TextBoxFor(model => model.camping.IdCamping, new { @readonly = true, @class = "form-control" })
 
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     @Html.LabelFor(model => model.camping.IdServicio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownListFor(model => model.camping.IdServicio,
-                new SelectList(Model.Listaservicios, "idServicio", "descripcion"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
+                new SelectList(Model.ListaServicio, "idServicio", "descripcion"), "Por favor seleccione una opción", new { style = "width:280px", @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -45,6 +45,8 @@
 
                     </div>
                 </div>
+
+               
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -93,6 +95,103 @@
     @Html.ActionLink("Volver", "IndexCamping")
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
+
+
+@section scripts{
+    
+    <script>
+        function ServicioPorCamping(idCamping, idServicio, descripcion, precio) {
+
+            this.idCamping = idCamping;
+            this.idServicio = idServicio;
+            this.descripcion = descripcion;
+            this.precio = precio;
+        }
+
+        var servicios = [];
+
+        function cargarServicios() {
+
+            var idCamping = parseInt(document.getElementById("camping_IdCamping").value);
+            var idServicio = parseInt(document.getElementById("camping_IdServicio").value);
+            var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
+            var precio = parseFloat(document.getElementById("camping_Precio").value);
+
+            if (document.getElementById("camping_IdServicio").value == "") {
+                alert('Debe elegir un servicio');
+                return;
+            } else if (document.getElementById("camping_Precio").value == "") {
+                alert('Ingrese Precio');
+                return;
+            }
+
+
+            var serv = new ServicioPorCamping(idCamping, idServicio, descripcion, precio);
+
+            for (var i = 0; i < servicios.length; i++) {
+                if (servicios[i].idServicio == serv.idServicio) {
+                    alert('El servicio ya fue agregado en la lista');
+                    return;
+                }
+            }
+
+            if (confirm('Los datos del servicio son Correctos? \n Servicio: ' + descripcion + ' Precio: ' + precio +
+                '\n Si los Datos Son correctos presione OK')) {
+                servicios.push(serv);
+                agregarServicio(serv);
+            } else {
+                return;
+            }
+
+
+
+        }
+
+
+        function agregarServicio(servicio) {
+
+            var tabla = document.getElementById("lstRegistro");
+            var htmlTabla;
+
+            for (var i = 0; i < servicios.length; i++) {
+                var htmlTabla = "<tr><td>" + servicios[i].idServicio + "</td><td>" + servicios[i].descripcion + "</td><td>" + servicios[i].precio + "</td></tr>";
+            }
+
+            tabla.innerHTML += htmlTabla;
+
+
+            document.getElementById("camping_IdServicio").value = "";
+            document.getElementById("camping_Precio").value = "";
+
+        }
+
+        $(document).ready(function () {
+            $("#btnAgregar").click(function () {
+
+                //var postData = { values: servicios };
+                postData = JSON.stringify({ 'values': servicios });
+
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    type: 'POST',
+                    url: '/Servicios/SaveServPorCamp',
+                    data: postData,
+                    success: function () {
+                        //$('#result').html('"PassThings()" successfully called.');
+                        document.forms[0].submit();
+                        window.location = '@Url.Action("IndexCamping","Camping")';// Mandar a Lista de Servicios como paso el id?
+                    },
+                    failure: function (response) {
+                        //$('#result').html(response);
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    }

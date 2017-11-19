@@ -1,0 +1,117 @@
+﻿@model BuscaCamping.DataAccess.ViewModels.DetalleReservaViewModel
+
+@{
+    ViewBag.Title = "DetailsReserva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle Reserva</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.DetalleReserva.IdReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetalleReserva.IdReserva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetalleReserva.FechaReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetalleReserva.FechaReserva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetalleReserva.IdCamping)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetalleReserva.IdCamping)
+        </dd>
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetalleReserva.IdCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetalleReserva.IdCliente)
+        </dd>    
+
+    </dl>
+
+    <br />
+    <br />
+
+    <div class="container table-responsive">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr class="bg-primary">
+
+                        <th>
+                            Servicio
+                        </th>
+                        <th>
+                            Precio
+                        </th>
+                        <th>
+                            Cant Personas
+                        </th>
+                        <th>
+                            Fecha Ingreso
+                        </th>
+                        <th>
+                            Fecha Salida
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model.ListaDetallesPorReserva)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Precio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CantPersonas)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaIngreso)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FechaSalida)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+<p>
+    
+    @Html.ActionLink("Volver", "IndexReserva")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    
+
+
+    }

@@ -27,6 +27,8 @@
 
 </head>
 <body>
+
+    @if (User.IsInRole("Administrador")) { 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,15 +40,21 @@
                 @Html.ActionLink("Busca Camping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                <ul class="nav navbar-nav">                    
                     <li>@Html.ActionLink("Listado Clientes", "Index", "Cliente")</li>
                     <li>@Html.ActionLink("Listado Camping", "IndexCamping", "Camping")</li>
+                    <li>@Html.ActionLink("Listado Reservas", "IndexReserva", "Reserva")</li>
+                    <li>@Html.ActionLink("Buscar Camping", "BuscarPorProvincia", "Busqueda")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
+    }
+
+    @Html.Partial("_LoginPartial")
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -61,104 +69,7 @@
           
        
     <script type="text/javascript">
-        $(function () {
-            // This will make every element with the class "date-picker" into a DatePicker element
-            $('.date-picker').datepicker({ dateFormat: 'dd-mm-yy', yearRange: '1910:+nn ', changeMonth: true, changeYear: true, minDate: new Date(1910, 1, 1), maxDate: new Date() });
-
-
-        })
-
-        function ServicioPorCamping(idCamping,idServicio, descripcion, precio) {
-
-            this.idCamping = idCamping;
-            this.idServicio = idServicio;
-            this.descripcion = descripcion;
-            this.precio = precio;
-        }
-
-        var servicios = [];
-
-        function cargarServicios() {
-
-            var idCamping = parseInt(document.getElementById("camping_IdCamping").value);
-            var idServicio = parseInt(document.getElementById("camping_IdServicio").value);
-            var descripcion = document.getElementById("camping_IdServicio").options[document.getElementById("camping_IdServicio").selectedIndex].text;
-            var precio = parseFloat(document.getElementById("camping_Precio").value);
-
-            if (document.getElementById("camping_IdServicio").value == "") {
-                alert('Debe elegir un servicio');
-                return;
-            } else if (document.getElementById("camping_Precio").value == "") {
-                alert('Ingrese Precio');
-                return;
-            }
-
-         
-            var serv = new ServicioPorCamping(idCamping,idServicio, descripcion, precio);
-
-            for (var i = 0; i < servicios.length; i++) {
-                if (servicios[i].idServicio==serv.idServicio) {
-                    alert('El servicio ya fue agregado en la lista');
-                    return;
-                }
-            }
-
-
-            servicios.push(serv);
-            agregarServicio(serv);
-
-
-
-        }
-
-
-        function agregarServicio(servicio) {
-
-            var tabla = document.getElementById("lstRegistro");
-            var htmlTabla;
-
-            for (var i = 0; i < servicios.length; i++) {
-                var htmlTabla = "<tr><td>" + servicios[i].idServicio + "</td><td>" + servicios[i].descripcion + "</td><td>" + servicios[i].precio + "</td></tr>";
-            }
-
-            tabla.innerHTML += htmlTabla;
-
-
-            document.getElementById("camping_IdServicio").value = "";
-            document.getElementById("camping_Precio").value = "";
-
-        }
-
-        $(document).ready(function () {
-            $("#btnAgregar").click(function () {
-
-                //var postData = { values: servicios };
-                postData = JSON.stringify({ 'values': servicios });
-
-                $.ajax({
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    url: '/Servicios/SaveServPorCamp',
-                    data: postData,
-                    success: function () {
-                        //$('#result').html('"PassThings()" successfully called.');
-                        document.forms[0].submit();
-                        window.location = '@Url.Action("IndexCamping","Camping")';// Mandar a Lista de Servicios como paso el id?
-                    },
-                    failure: function (response) {
-                        //$('#result').html(response);
-                    }
-                });
-            });
-
-        });
-
-
-
-
-
-
+  
         $(document).ready(function () {
             //Dropdownlist Selectedchange event
 
@@ -289,44 +200,7 @@
             })
         });
 
-
-
-        $(document).ready(function () {
-            $("#nombreModelo").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "/Busqueda/Index",
-                        type: "POST",
-                        dataType: "json",
-                        data: { Prefix: request.term },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return { label: item.NombreBusqueda, value: item.NombreBusqueda };
-                            }))
-
-                        }
-                    })
-                },
-                messages: {
-                    noResults: function () { }, results: function () { }
-                }
-            });
-        });
-
-        
-        var selected = [];
-        $(document).ready(function () {
-            
-            $('#btnAgrServ').on('click', function () {
-                selected = [];
-            $("input:checkbox[name=chkServicio]:checked").each(function () {
-                selected.push(parseInt($(this).val()));
-            });
-            selected.push($('#nombreModelo').val())
-            });
-        });
-
-   
+           
     </script>
 
     @RenderSection("scripts", required: false)

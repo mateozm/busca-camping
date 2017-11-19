@@ -12,28 +12,33 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BuscaCamping.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class CampingController : Controller
     {
         GestorCamping gc = new GestorCamping();
         GestorZonas gz = new GestorZonas();
         CampingViewModel cvm = new CampingViewModel();        
         GestorServicio gs = new GestorServicio();
+        GestorOpinion go = new GestorOpinion();
 
         // GET: Camping
+        
         public ActionResult IndexCamping()
         {
-            cvm.ListaCamping = gc.ObtenerListaCamping();
-            return View(cvm);
+            var camping = gc.ObtenerListaCamping();
+            return View(camping);
         }
 
        
        
 
         // GET: Camping/Details/5
+        [AllowAnonymous]
         public ActionResult DetailsCamping(int id)
         {
             cvm.camping = gc.ObtenerCamping(id);
             cvm.ListaServicioPorCamping = gs.ObtenerListaServiciosPorCamping(id);
+            cvm.opiniones = go.ObtenerOpinionesPorCamping(id);
             return View(cvm);
         }
 
@@ -63,9 +68,10 @@ namespace BuscaCamping.Controllers
 
         [HttpPost]
         public ActionResult CreateCamping(CampingViewModel cvm)
-        {
+        {            
             gc.AgregarCamping(cvm);
-            return RedirectToAction("SaveServPorCamp", "Servicios"/*, new { idCamping = cvm.camping.IdCamping }*/);
+            var id = gc.ObtenerUltimoCamping();
+            return RedirectToAction("SaveServPorCamp", "Servicios", new {idCamping=id });
         }
 
         // GET: Camping/Edit/5

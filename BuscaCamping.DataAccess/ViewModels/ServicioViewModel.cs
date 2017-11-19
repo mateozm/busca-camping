@@ -10,6 +10,7 @@ namespace BuscaCamping.DataAccess.ViewModels
 {
     public class ServicioViewModel
     {
+       public Camping camping { get; set; }
        public ServicioPorCamping ServPorCam { get; set; }
        public List<ServicioCamping> ListaServicio { get; set; }
     }

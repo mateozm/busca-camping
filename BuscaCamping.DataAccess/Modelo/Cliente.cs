@@ -16,6 +16,11 @@ namespace BuscaCamping.DataAccess.Modelo
 
         }
 
+        public Cliente(string codUser)
+        {
+            CodUser = codUser;
+        }
+
         public Cliente(int codCliente, int dni, string nombre, string apellido, DateTime fechaNac, bool nacionalidad, int idTipoSexo, int idLocalidad, string calle, int numeroCalle, int idDatosContacto, string email, int telFijo, int celular, string nombreLocalidad, string nombreDepartamento, string nombreProvincia, string descripcionSexo, int idProvincia, int idDepartamento)
         {
             CodCliente = codCliente;
@@ -83,6 +88,7 @@ namespace BuscaCamping.DataAccess.Modelo
         [Display(Name = "Departamento")]        
         [Required(ErrorMessage = "Elija departamento")]
         public int IdDepartamento { get; set; }
+        public string CodUser { get; set; }
 
         
 

@@ -12,11 +12,9 @@ namespace BuscaCampingTests
     {
         static void Main(string[] args)
         {
-            var gc = new GestorCliente();
-            var clientes = gc.ObtenerTodos();
+            GestorReserva gr = new GestorReserva();
 
-            Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(clientes));
-            Console.ReadKey();
+            //gr.Transaction();
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "VistaAdministrador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bienvenido Administrador!</h2>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Busca Camping", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Listado Clientes", "Index", "Cliente")</li>
+                <li>@Html.ActionLink("Listado Camping", "IndexCamping", "Camping")</li>
+                <li>@Html.ActionLink("Listado Reservas", "IndexReserva", "Reserva")</li>
+                <li>@Html.ActionLink("Buscar Camping", "BuscarPorProvincia", "Busqueda")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>
+

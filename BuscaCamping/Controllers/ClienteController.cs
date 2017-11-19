@@ -6,11 +6,13 @@ using System.Web.Mvc;
 using BuscaCamping.DataAccess.DataReaders;
 using BuscaCamping.DataAccess.Modelo;
 using BuscaCamping.DataAccess.ViewModels;
+using Microsoft.AspNet.Identity;
+
 
 
 namespace BuscaCamping.Controllers
 {
-    
+    [Authorize(Roles = "Administrador")]
     public class ClienteController : Controller
     {
         GestorCliente gc = new GestorCliente();
@@ -30,14 +32,14 @@ namespace BuscaCamping.Controllers
             var cliente = gc.ObtenerCliente(id);
             return View(cliente);
         }
-
+        [AllowAnonymous]
         public JsonResult ListarDepartamentos(int id)
         {
             List<SelectListItem> lista = gz.ObtenerDepartamentos(id).ConvertAll(x => new SelectListItem { Text = x.NombreDepartamento, Value = x.IdDepartamento.ToString() });
            
             return Json(new SelectList(lista,"Value","Text"));
         }
-
+        [AllowAnonymous]
         public JsonResult Listarlocalidades(int id)
         {
             List<SelectListItem> lista = gz.ObtenerLocalidades(id).ConvertAll(x => new SelectListItem { Text = x.NombreLocalidad, Value = x.IdLocalidad.ToString() });
@@ -46,6 +48,7 @@ namespace BuscaCamping.Controllers
         }
 
         // GET: Cliente/Create
+        [AllowAnonymous]
         public ActionResult Create()
         {
             
@@ -59,11 +62,12 @@ namespace BuscaCamping.Controllers
 
         
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Create(ClienteViewModel cvm)
         {
-
-            gc.AgregarCliente(cvm);
-            return RedirectToAction("Index");
+            var id = User.Identity.GetUserId();
+            gc.AgregarCliente(cvm,id);
+            return RedirectToAction("BuscarPorProvincia", "Busqueda");
 
         }
 
@@ -74,6 +78,7 @@ namespace BuscaCamping.Controllers
             return RedirectToAction("Index");
         }
 
+        [AllowAnonymous]
         public ActionResult Edit(int idCliente)
         {
             ViewData["prov"] = gz.ObtenerProvincias().ConvertAll(x => new SelectListItem { Text = x.NombreProvincia, Value = x.IdProvincia.ToString() });
@@ -85,6 +90,7 @@ namespace BuscaCamping.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Edit(ClienteViewModel cvm)
         {                          
                 gc.EditarCliente(cvm);

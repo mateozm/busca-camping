@@ -1,0 +1,61 @@
+﻿@model BuscaCamping.DataAccess.ViewModels.OpinionViewModel
+
+@{
+    ViewBag.Title = "CreateOpinion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deja tu Opinión!</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+           
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Camping.IdCamping, new { idCamping = "HiddenText" })
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Camping.NombreCamping,  htmlAttributes: new { @class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Camping.NombreCamping, new { htmlAttributes = new { @class = "form-control",@readonly="true" } })
+                @Html.ValidationMessageFor(model => model.Camping.NombreCamping, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Opinion.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Opinion.Texto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Opinion.Texto, "", new { @class = "text-danger" })
+            </div>
+        </div>     
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Opinion.Calificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Opinion.Calificacion, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese numero del 1 al 5" } })
+                @Html.ValidationMessageFor(model => model.Opinion.Calificacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

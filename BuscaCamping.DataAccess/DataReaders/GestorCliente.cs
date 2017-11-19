@@ -102,11 +102,11 @@ namespace BuscaCamping.DataAccess.DataReaders
 
 
 
-        public void AgregarCliente(ClienteViewModel cvm)
+        public void AgregarCliente(ClienteViewModel cvm, string idUser)
         {
             conn.Open();
 
-            SqlCommand comm = new SqlCommand("exec procedimiento8 @email,@telFijo,@celular,@dni,@nombre,@apellido,@fechaNac,@nacionalidad,@idTipoSexo,@idLocalidad,@calle,@numeroCalle", conn);
+            SqlCommand comm = new SqlCommand("exec procedimiento10 @email,@telFijo,@celular,@dni,@nombre,@apellido,@fechaNac,@nacionalidad,@idTipoSexo,@idLocalidad,@calle,@numeroCalle,@idUser", conn);
             comm.Parameters.Add(new SqlParameter("@email", cvm.cliente.Email));
             comm.Parameters.Add(new SqlParameter("@telFijo", cvm.cliente.TelFijo));
             comm.Parameters.Add(new SqlParameter("@celular", cvm.cliente.Celular));
@@ -119,7 +119,8 @@ namespace BuscaCamping.DataAccess.DataReaders
             comm.Parameters.Add(new SqlParameter("@idLocalidad", cvm.cliente.IdLocalidad));
             comm.Parameters.Add(new SqlParameter("@calle", cvm.cliente.Calle));
             comm.Parameters.Add(new SqlParameter("@numeroCalle", cvm.cliente.NumeroCalle));
-            
+            comm.Parameters.Add(new SqlParameter("@idUser", idUser));
+
 
             comm.ExecuteNonQuery();
 
@@ -169,6 +170,28 @@ namespace BuscaCamping.DataAccess.DataReaders
 
             conn.Close();
             return sexos;
+        }
+
+        public List<Cliente> ClientesUsers()
+        {
+            List<Cliente> clientesUsers = new List<Cliente>();
+
+            conn.Open();
+
+            SqlCommand comm = new SqlCommand("select idUser from cliente where idUser is not null", conn);
+            SqlDataReader dr = comm.ExecuteReader();
+            while (dr.Read())
+            {
+                clientesUsers.Add(new Cliente
+                {
+                    CodUser= dr.GetString(0)
+                
+                });
+            }
+
+            conn.Close();
+            return clientesUsers;
+
         }
 
 

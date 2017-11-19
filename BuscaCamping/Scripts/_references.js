@@ -38,7 +38,6 @@
 /// <reference path="datatables/responsive.foundation.min.js" />
 /// <reference path="datatables/responsive.jqueryui.min.js" />
 /// <reference path="datatables/responsive.semanticui.min.js" />
-/// <reference path="javascript.js" />
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-1.12.4.js" />

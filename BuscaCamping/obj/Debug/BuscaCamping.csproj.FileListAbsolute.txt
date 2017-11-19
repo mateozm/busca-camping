@@ -113,3 +113,5 @@ D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCam
 D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCamping\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCamping\bin\System.Runtime.CompilerServices.Unsafe.xml
 D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCamping\bin\YamlDotNet.xml
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCamping\obj\Debug\BuscaCamping.Migrations.Dni.resources
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCamping\obj\Debug\BuscaCamping.csproj.GenerateResource.Cache

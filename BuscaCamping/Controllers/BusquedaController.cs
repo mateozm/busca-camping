@@ -7,6 +7,7 @@ using System.Net;
 using System.Web.Mvc;
 using BuscaCamping.DataAccess.DataReaders;
 using BuscaCamping.DataAccess.Modelo;
+using BuscaCamping.DataAccess.DTO;
 using BuscaCamping.DataAccess.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,27 +20,34 @@ namespace BuscaCamping.Controllers
         GestorBusqueda gb = new GestorBusqueda();
         GestorZonas gz = new GestorZonas();
         CampingViewModel cvm = new CampingViewModel();
-
-
         
+
+
+
+
+
         public ActionResult BuscarPorProvincia()
-        {           
+        {        
             var camping = gc.ObtenerListaCamping();
             return View(camping);
         }
 
         [HttpPost]
-        public ActionResult BuscarPorProvincia(string nombre)
+        public JsonResult BuscarPorProvincia(string Nombre, int[]Selected,int Total)
         {
-            
-            var CampingsPorProv = gb.BuscarPorProvincia(nombre);
-            if (CampingsPorProv.Count == 0)
+            if(Nombre=="" && Selected==null)
             {
-                return BuscarPorProvincia();
-
+                return Json(new { msg = "Elija un parametro de búsqueda "});
             }
-            return View(CampingsPorProv);
-            
+            var CampingPorParametro = gb.BuscarPorParametros(Nombre, Selected, Total);
+
+            if (CampingPorParametro.Count==0)
+            {
+                return Json(new { msg = "No hay resultados " });
+            }
+                   
+            return Json(CampingPorParametro);
+
         }
 
         [HttpPost]

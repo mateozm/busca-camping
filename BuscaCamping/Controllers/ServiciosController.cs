@@ -10,18 +10,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BuscaCamping.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class ServiciosController : Controller
     {
         CampingViewModel cvm = new CampingViewModel();
         GestorServicio gs = new GestorServicio();
         ServicioPorCamping spc = new ServicioPorCamping();
+        GestorCamping gc = new GestorCamping();
+        ServicioViewModel svm = new ServicioViewModel();
 
-        public ActionResult SaveServPorCamp()
+        public ActionResult SaveServPorCamp(int idCamping)
         {
+            svm.camping = gc.ObtenerCamping(idCamping);
+            svm.ListaServicio = gs.ObtenerTodosServicios();
 
-            cvm.Listaservicios = gs.ObtenerTodosServicios();
-
-            return View(cvm);
+            return View(svm);
         }
 
         [HttpPost]

@@ -70,7 +70,11 @@
     </div>
 <br />
 <br />
-<p>@Html.ActionLink("Reservar", "DetailsCamping", "Camping", null, null, null, new { id =Model.camping.IdCamping}, new { @class = "btn btn-warning" })</p> 
+
+<p>@Html.ActionLink("Reservar", "CreateReserva", "Reserva", null, null, null, new { idCamping = Model.camping.IdCamping }, new { @class = "btn btn-warning" })</p> 
+<br />
+<br />
+
 <br />
 <br />
 
@@ -108,8 +112,40 @@
 
         </div>
     </div>
+<br />
+<br />
+
+<div class="" id="Opiniones">
+
+    <div>
+
+        <h4>Deja Tu Opinion</h4>
+        <p>@Html.ActionLink("Opinar", "CreateOpinion", "Opinion", null, null, null, new { idCamping = Model.camping.IdCamping }, new { @class = "btn btn-warning" })</p>
+    </div>
+    <br />
+    <br />
+
+    <h2>Opiniones de Usuarios</h2>
+
+    @foreach (var item in @Model.opiniones)
+    {
+
+
+
+        <div class="thumbnail">
+            <div class="caption">
+
+                <h3>@Html.DisplayFor(modelItem => item.Calificacion)</h3>
+                <p>@Html.DisplayFor(modelItem => item.Texto)</p>
+            </div>
+        </div>
+
+    }
+
+</div>
+             
 
             <p>
                 @*@Html.ActionLink("Modificar", "EditCamping", new { idCamping = Model.camping.IdCamping })*@
-                @Html.ActionLink("Volver", "IndexCamping")
+                @Html.ActionLink("Volver","BuscarPorProvincia", "Busqueda")
             </p>

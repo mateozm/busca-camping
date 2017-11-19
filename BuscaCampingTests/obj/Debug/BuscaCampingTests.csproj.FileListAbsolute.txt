@@ -1,0 +1,10 @@
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\BuscaCampingTests.exe.config
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\BuscaCampingTests.exe
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\BuscaCampingTests.pdb
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\BuscaCamping.DataAccess.dll
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\Newtonsoft.Json.dll
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\BuscaCamping.DataAccess.pdb
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\bin\Debug\Newtonsoft.Json.xml
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\obj\Debug\BuscaCampingTests.csprojResolveAssemblyReference.cache
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\obj\Debug\BuscaCampingTests.exe
+D:\Users\Mateo\Desktop\Tecnicatura Programación\2do año\busca-camping\BuscaCampingTests\obj\Debug\BuscaCampingTests.pdb

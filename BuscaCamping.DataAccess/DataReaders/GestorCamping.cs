@@ -94,7 +94,9 @@ namespace BuscaCamping.DataAccess.DataReaders
 
         public void AgregarCamping(CampingViewModel cvm)
         {
-            conn.Open();            
+            
+            
+            conn.Open();
 
             SqlCommand comm = new SqlCommand("exec insertCamping9 @email,@telFijo,@celular,@nombreCamping,@cantParcelas,@calle,@numeroCalle,@idLocalidad", conn);
             comm.Parameters.Add(new SqlParameter("@email", cvm.camping.Email));
@@ -109,6 +111,8 @@ namespace BuscaCamping.DataAccess.DataReaders
             comm.ExecuteNonQuery();
 
             conn.Close();
+
+            
         }
 
 
@@ -132,9 +136,26 @@ namespace BuscaCamping.DataAccess.DataReaders
             conn.Close();
         }
 
+        public int ObtenerUltimoCamping()
+        {
+            int c = 0;
+            conn.Open();
+
+            SqlCommand comm = new SqlCommand("select top 1 idCamping from Camping order by idCamping desc", conn);            
+            SqlDataReader dr = comm.ExecuteReader();
+            if (dr.Read())
+            {
+                c = dr.GetInt32(0);                
+            }
+
+            conn.Close();
+            return c;
+        }
+
+
 
 
     }
 
-   
+
 }

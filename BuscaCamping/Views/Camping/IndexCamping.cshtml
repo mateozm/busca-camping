@@ -1,10 +1,11 @@
-﻿@model BuscaCamping.DataAccess.ViewModels.CampingViewModel
-
+﻿@model IEnumerable<BuscaCamping.DataAccess.Modelo.Camping>
 @{
     ViewBag.Title = "IndexCamping";
 }
 
 <h2>Lista Camping</h2>
+
+<hr />
 
 <p>
     @Html.ActionLink("Agregar Camping", "CreateCamping")
@@ -15,42 +16,42 @@
             <table class="table">
                 <tr class="bg-primary">
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.IdCamping)
+                        @Html.DisplayNameFor(model => model.IdCamping)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.NombreCamping)
+                        @Html.DisplayNameFor(model => model.NombreCamping)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.CantParcelas)
+                        @Html.DisplayNameFor(model => model.CantParcelas)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.Calle)
+                        @Html.DisplayNameFor(model => model.Calle)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.NumeroCalle)
+                        @Html.DisplayNameFor(model => model.NumeroCalle)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.IdLocalidad)
+                        @Html.DisplayNameFor(model => model.IdLocalidad)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.Email)
+                        @Html.DisplayNameFor(model => model.Email)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.TelFijo)
+                        @Html.DisplayNameFor(model => model.TelFijo)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.Celular)
+                        @Html.DisplayNameFor(model => model.Celular)
                     </th>
 
                     <th>
-                        @Html.DisplayNameFor(model => model.camping.NombreProvincia)
+                        @Html.DisplayNameFor(model => model.NombreProvincia)
                     </th>
 
                     <th colspan="3">Acciones</th>
 
                 </tr>
 
-                @foreach (var item in Model.ListaCamping)
+                @foreach (var item in Model)
             {
                     <tr>
                         <td>
